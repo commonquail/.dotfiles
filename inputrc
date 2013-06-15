@@ -1,0 +1,21 @@
+# Include the default inputrc file to avoid overriding anything.
+$include /etc/inputrc
+
+# Make no noise on ambiguous completion.
+set bell-style none
+
+# Replace completion prefixes with ellipsis.
+set completion-prefix-display-length 2
+
+# Case insensitive Tab completion.
+set completion-ignore-case
+
+# Show all results on first Tab-press.
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# Up arrow finds previous history match.
+"\e[A": history-search-backward
+
+# Down arrow finds next history match.
+"\e[B": history-search-forward
