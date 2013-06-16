@@ -1,7 +1,7 @@
 #!/bin/bash
 backup="${HOME}/dotfiles_$(date +'%Y-%m-%d-%S')"
-files="inputrc"
-dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+files="inputrc bashrc bash_aliases"
+dotfilesdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ ! -d "${backup}" ]; then
   mkdir "${backup}"
@@ -20,9 +20,10 @@ for file in "${files}"; do
   fi
 
   echo "Symlinking ${dot}..."
-  ln -v -s "${dir}/${file}" "${dot}"
+  ln -v -s "${dotfilesdir}/${file}" "${dot}"
 
 done
 unset dot
 unset files
 unset backup
+unset dotfilesdir
