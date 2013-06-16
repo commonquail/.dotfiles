@@ -113,6 +113,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$
-#PS1='\[\e[0;32m\]\u\[\e[m\]@\h \[\e[1;34m\]\W\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]\[\e[m\]'
 PS1='\[\e[0;32m\]\u\[\e[0;96m\]@\h \[\e[1;34m\]\w\n\[\e[1;32m\]\$\[\e[m\] '
