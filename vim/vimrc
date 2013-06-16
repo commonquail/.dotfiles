@@ -1,0 +1,310 @@
+set nocompatible
+
+"let g:html_indent_style1 = "inc"
+"let g:html_indent_script1 = "inc"
+"let g:html_indent_inctags = "html,body,head,tbody"
+
+" Assume a fast terminal connection.
+set ttyfast
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" Don't store backups; do make temps when writing to file.
+set nobackup
+set noswapfile
+
+" Allow changing the buffer without saving first.
+set hidden
+
+" Number of lines to retain in Vim's history.
+set history=700
+
+" A map leader can be used to alias commands.
+let g:mapleader = ","
+
+" Quick save.
+nnoremap <Leader>w :w!<CR>
+
+" Fast editing of $VIM/.vim/vimrc
+noremap <Leader>e :e! ~/.vim/vimrc<CR>
+
+" Reload vimrc after edit.
+autocmd! BufWritePost vimrc source ~/.vim/vimrc
+
+" CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+if has("autocmd")
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  augroup END
+
+else
+
+  set autoindent        " always set autoindenting on
+
+endif " has("autocmd")
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+          \ | wincmd p | diffthis
+endif
+
+" 7 line vertical scroll buffer.
+set scrolloff=7
+
+" Display linenumbers.
+set number
+
+" Wildmenu displays auto completion options in a menu
+" above the command line when pressing <TAB>.
+set wildmenu
+set wildmode=list:longest,full
+set wildignore+=*.class
+
+" Show current position.
+set ruler
+
+" Reduce 'press Enter ...' messages-
+set cmdheight=2
+
+" Backspace traverses special characters.
+set backspace=eol,start,indent
+
+" Additional characters allowed to traverse line breaks.
+set whichwrap+=<,>,h,l
+
+" Make Backspace delete the character in front of the cursor.
+noremap <BS> X
+
+" Report all line changes from :substitute.
+set report=0
+
+" Case insensitive searching.
+set ignorecase
+
+" Case sensitive searching if pattern contains capital letters.
+set smartcase
+
+" Turn off search highlighting, but toggle with Ctrl+N.
+set nohlsearch
+:noremap <silent> <C-N> :se invhlsearch<CR>
+
+" Incremental search (search 'on-input').
+set incsearch
+
+" Don't redraw while executing macros.
+set lazyredraw
+
+" Magic makes regexp work 'normally' in Vim.
+set magic
+
+" Show matching braces.
+set showmatch
+
+" Tenths of second to display matching brace.
+set matchtime=2
+
+" Extra section delimiters to match.
+set matchpairs+=<:>
+
+" Disable bells and whistles.
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" Navigate to last and next compiler error.
+noremap <silent> <F7> <Esc>:cprevious<CR>
+noremap <silent> <F8> <Esc>:cnext<CR>
+
+if has("unix")
+   set gfn=Consolas:12,Inconsolata:12,Monospace\ 8
+   set shell=bash
+elseif has("mac")
+   set gfn=Menlo:h14
+   set shell=bash
+else
+   set gfn=DejaVu\ LGC\ Sans\ Mono:h11,Bitstream\ Vera\ Sans\ Mono:h11
+endif
+
+set columns=85
+set background=dark
+colorscheme peaksea
+
+" gVim or Vim.
+if has("gui_running")
+   set guioptions-=r	" Exclude scroll bar.
+   set guioptions-=T	" Exclude toolbar.
+endif
+
+" Default encoding.
+set encoding=utf8
+
+" Prioritised list of file encodings to try.
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+    set fileencodings=utf-8,latin1
+endif
+
+" Substitute spaces for tabs.
+set expandtab
+
+" Number of spaces in a level of indentation.
+set shiftwidth=4
+
+" Indent to nearest shiftwidth-divisible column.
+set shiftround
+
+" Retain standard 8-space Tab to preserve files
+" written for that.
+set tabstop=8
+
+" Tab in front of line will insert 'shiftwidth' spaces.
+set smarttab
+
+" Wrap long lines at 'breakat,' not last character on
+" line.
+set linebreak
+
+" Multiple spaces is a crime against language everywhere.
+set nojoinspaces
+
+" Maximum width of inserted text.
+set textwidth=300
+
+" Automatically wrap line-display. Does not change text.
+set wrap
+
+" Map search and backwards-search to Space/Ctrl+Space.
+noremap <Space> /
+noremap <S-Space> ?
+
+" Move between windows.
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
+
+" Tab configuration.
+noremap <Leader>tn :tabnew! %<CR>
+noremap <Leader>te :tabedit
+noremap <Leader>tc :tabclose<CR>
+noremap <Leader>tm :tabmove
+
+" Specify the behaviour when switching between buffers.
+try
+    set switchbuf=usetab
+    " Show tab line only if there are at least two tabs.
+    set showtabline=1
+catch
+endtry
+
+" Always show the statusbar.
+set laststatus=2
+
+" Format the statusline. The default statusline is
+" %<%f\ %h%m%r%=%-14.(%1,%c%V%)\ %P
+set statusline=                 " Clear for when vimrc is reloaded.
+set statusline+=[%n]\           " Buffer number.
+set statusline+=%<%.99f\        " Relative file path, max 99 characters.
+set statusline+=[%{strlen(&fenc)?&fenc:'none'},%{&ff}] " Encoding, format.
+set statusline+=%h%m%r%y        " Flags: help buffer, modified, read-only, file type.
+set statusline+=%=              " Right-align rest.
+set statusline+=%l/%L:%c\       " Current line / total lines, column.
+set statusline+=%P              " Percentage through file.
+
+" Move a line of text using Alt+[jk].
+if has("unix") || has("win32")
+    nnoremap <M-k> mz:m-2<CR>`z
+    nnoremap <M-j> mz:m+<CR>`z
+    vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
+    vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
+endif
+
+" Repeat last action and return to starting position.
+nnoremap . .`[
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toggle spell checking.
+noremap <Leader>ss :setlocal spell! spelllang=en_gb<CR>
+
+" Go to next misspelled word after cursor.
+noremap <Leader>sn ]s
+
+" Go to previous misspelled word before cursor.
+noremap <Leader>sp [s
+
+" Add word under cursor to word list.
+noremap <Leader>sa zg
+
+" Suggest alternate spelling.
+noremap <Leader>sw z=
+
+set diffexpr=MyDiff()
+if !exists(":MyDiff()")
+    function! MyDiff()
+        let opt = '-a --binary '
+        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+        let arg1 = v:fname_in
+        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+        let arg2 = v:fname_new
+        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+        let arg3 = v:fname_out
+        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+        let eq = ''
+        if $VIMRUNTIME =~ ' '
+            if &sh =~ '\<cmd'
+                let cmd = '""' . $VIMRUNTIME . '\diff"'
+                let eq = '"'
+            else
+                let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+            endif
+        else
+            let cmd = $VIMRUNTIME . '\diff'
+        endif
+        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+endif
+
