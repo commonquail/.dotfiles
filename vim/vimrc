@@ -1,3 +1,9 @@
+" The Windows equivalent of ~/.vim is ~/vimfiles. Force Vim to look in ~/.vim
+" for platform agnosticism, though only on Windows.
+if has('win32')
+    set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
+endif
+
 set nocompatible
 
 "let g:html_indent_style1 = "inc"
@@ -7,7 +13,7 @@ set nocompatible
 " Assume a fast terminal connection.
 set ttyfast
 
-" allow backspacing over everything in insert mode
+" Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
 
 " Don't store backups; do make temps when writing to file.
