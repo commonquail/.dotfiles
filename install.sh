@@ -1,6 +1,6 @@
 #!/bin/bash
 backup="${HOME}/dotfiles_$(date +'%Y-%m-%d-%S')"
-files="inputrc bashrc bash_aliases"
+files="inputrc bashrc bash_aliases gitconfig"
 dotfilesdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ ! -d "${backup}" ]; then

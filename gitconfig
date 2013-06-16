@@ -1,0 +1,9 @@
+[user]
+	email = commonquail@gmail.com
+	name = commonquail
+[credential]
+	helper = cache
+[credential "https://github.com"]
+	username = commonquail
+[push]
+	default = simple
