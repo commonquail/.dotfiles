@@ -10,7 +10,8 @@ fi
 chmod a+w "${backup}"
 #echo "Backing up existing dotfiles in ${backup}..."
 
-for file in "${files}"; do
+# ${files} should not be quoted here or it will not be interpreted as a list."
+for file in ${files}; do
 
   dot="${HOME}/.${file}"
 
