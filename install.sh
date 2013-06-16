@@ -8,7 +8,6 @@ if [ ! -d "${backup}" ]; then
 fi
 
 chmod a+w "${backup}"
-#echo "Backing up existing dotfiles in ${backup}..."
 
 # ${files} should not be quoted here or it will not be interpreted as a list."
 for file in ${files}; do
@@ -22,8 +21,11 @@ for file in ${files}; do
 
   echo "Symlinking ${dot}..."
   ln -v -s "${dotfilesdir}/${file}" "${dot}"
+  echo "\n"
 
 done
+echo "Done."
+
 unset dot
 unset files
 unset backup
