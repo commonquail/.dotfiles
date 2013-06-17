@@ -21,7 +21,7 @@ for file in ${files}; do
 
   echo "Symlinking ${dot}..."
   ln -v -s "${dotfilesdir}/${file}" "${dot}"
-  echo "\n"
+  echo
 
 done
 echo "Done."
