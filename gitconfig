@@ -7,3 +7,11 @@
 	username = commonquail
 [push]
 	default = simple
+[credential "https://bitbucket.org"]
+	username = jokum
+[color]
+	ui = auto
+[advice]
+	pushNonFastForward = false
+[core]
+	editor = vim
