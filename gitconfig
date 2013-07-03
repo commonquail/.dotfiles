@@ -1,6 +1,6 @@
 [user]
 	email = commonquail@gmail.com
-	name = commonquail
+	name = Mikkel Kjeldsen
 [credential]
 	helper = cache
 [credential "https://github.com"]
