@@ -126,3 +126,16 @@ man() {
 	LESS_TERMCAP_us=$(printf "\e[1;4;32m") \
 	man "$@"
 }
+
+svndiff() {
+    if [ ! -z "$1" -a -f "$1" ]; then
+        # svn diff $1 and pipe it to vim.
+        # Set vim to forget the buffer and update the title to the diff file.
+        # Disable swap file and buffer editing. From from stdin.
+        svn diff "$1" | vim -c "set buftype=nofile titlestring=$1" -nM -
+    else
+        echo "usage: svndiff <file>"
+        echo "file must be an existing, regular file (not a directory)."
+        echo "Additional arguments are ignored."
+    fi
+}
