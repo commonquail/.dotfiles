@@ -134,7 +134,7 @@ svndiff() {
         # Disable swap file and buffer editing. From from stdin.
         svn diff "$1" |\
             vim -c "set buftype=nofile titlestring=$1 hlsearch"\
-            -c "/^[+-]"\
+            -c "/^[-+]"\
             -nM -
     else
         echo "usage: svndiff <file>"
