@@ -128,7 +128,7 @@ man() {
 }
 
 svndiff() {
-    if [ ! -z "$1" -a -f "$1" ]; then
+    if [ $# = 1 -a -f "$1" ]; then
         # Pipe svn diff $1 to vim.
         # Set vim to forget the buffer and update the title to the diff file.
         # Disable buffer editing. Read from stdin.
