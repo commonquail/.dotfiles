@@ -133,7 +133,7 @@ svndiff() {
         # Set vim to forget the buffer and update the title to the diff file.
         # Disable buffer editing. Read from stdin.
         svn diff "$1" |\
-            vim -c "set buftype=nofile titlestring=$1 hlsearch"\
+            vim -c "set buftype=nofile titlestring=$1"\
             -c "/^@@"\
             -nM -
     else
