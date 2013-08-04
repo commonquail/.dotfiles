@@ -6,7 +6,7 @@
 [credential "https://github.com"]
 	username = commonquail
 [push]
-	default = simple
+	default = matching
 [credential "https://bitbucket.org"]
 	username = jokum
 [color]
