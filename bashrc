@@ -128,13 +128,13 @@ man() {
 }
 
 svndiff() {
-    if [ ! -z "$1" -a -f "$1" ]; then
-        # svn diff $1 and pipe it to vim.
+    if [ $# = 1 -a -f "$1" ]; then
+        # Pipe svn diff $1 to vim.
         # Set vim to forget the buffer and update the title to the diff file.
-        # Disable swap file and buffer editing. From from stdin.
-        svn diff "$1" |\
-            vim -c "set buftype=nofile titlestring=$1 hlsearch"\
-            -c "/^[+-]"\
+        # Disable buffer editing. Read from stdin.
+        svn diff -x -w "$1" |\
+            vim -c "set buftype=nofile titlestring=$1"\
+            -c "/^@@"\
             -nM -
     else
         echo "usage: svndiff <file>"
