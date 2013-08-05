@@ -160,6 +160,7 @@ set t_vb=
 set tm=500
 
 " Navigate to last and next compiler error.
+noremap <silent> <F6> <Esc>:make<CR><CR>
 noremap <silent> <F7> <Esc>:cprevious<CR>
 noremap <silent> <F8> <Esc>:cnext<CR>
 
