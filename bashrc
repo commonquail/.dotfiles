@@ -142,3 +142,31 @@ svndiff() {
         echo "Additional arguments are ignored."
     fi
 }
+
+# svn changelist Tab completion.
+_svncl() {
+    [[ -e .svn ]] ||
+        {
+            return
+        }
+
+    COMPREPLY=()
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    if [[ $COMP_CWORD -eq 1 ]]; then
+        local opts=$(svn status | grep --color=never "^--- Changelist" | awk -F\' '{print $(NF-1)}')
+        COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+    else
+        # Unescape spaces.
+        cur=${cur//\\ / }
+        # Expand ~/
+        [[ ${cur} == "~/"* ]] && cur=${cur/\~/$HOME}
+        # List files; escape spaces.
+        local files=("${cur}"*)
+        [[ -e ${files[0]} ]] && COMPREPLY=("${files[@]// /\ }")
+    fi
+}
+
+svncl() {
+    [[ -e .svn ]] && $(svn changelist "$@")
+}
+complete -o filenames -F _svncl svncl
