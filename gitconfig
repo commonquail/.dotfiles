@@ -15,3 +15,5 @@
 	pushNonFastForward = false
 [core]
 	editor = vim
+[alias]
+	unstage = reset HEAD --
