@@ -163,4 +163,4 @@ _svncl() {
 svncl() {
     [[ -e .svn ]] && svn changelist "$@"
 }
-complete -o filenames -F _svncl svncl
+complete -F _svncl svncl
