@@ -8,7 +8,7 @@ set bell-style none
 set completion-prefix-display-length 2
 
 # Case insensitive Tab completion.
-set completion-ignore-case
+set completion-ignore-case on
 
 # Show all results on first Tab-press.
 set show-all-if-ambiguous on
