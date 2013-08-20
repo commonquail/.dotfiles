@@ -153,7 +153,8 @@ _svncl() {
     COMPREPLY=()
     local cur="${COMP_WORDS[COMP_CWORD]}"
     if [[ $COMP_CWORD -eq 1 ]]; then
-        local opts=$(svn status | grep --color=never "^--- Changelist" | awk -F\' '{print $(NF-1)}')
+        local opts="$(svn status | grep --color=never '^--- Changelist'\
+            | awk -F\' '{print $(NF-1)}')"
         COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
     else
         local opts="$(svn status | cut -c5- | grep --color=never '^ '\
