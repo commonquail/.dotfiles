@@ -145,10 +145,7 @@ svndiff() {
 
 # svn changelist Tab completion.
 _svncl() {
-    [[ -e .svn ]] ||
-        {
-            return
-        }
+    [[ -e .svn ]] || return 1
 
     COMPREPLY=()
     local cur="${COMP_WORDS[COMP_CWORD]}"
