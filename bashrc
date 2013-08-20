@@ -156,13 +156,9 @@ _svncl() {
         local opts=$(svn status | grep --color=never "^--- Changelist" | awk -F\' '{print $(NF-1)}')
         COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
     else
-        # Unescape spaces.
-        cur=${cur//\\ / }
-        # Expand ~/
-        [[ ${cur} == "~/"* ]] && cur=${cur/\~/$HOME}
-        # List files; escape spaces.
-        local files=("${cur}"*)
-        [[ -e ${files[0]} ]] && COMPREPLY=("${files[@]// /\ }")
+        local opts="$(svn status | cut -c5- | grep --color=never '^ '\
+            | awk '{print $1}')"
+        COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
     fi
 }
 
