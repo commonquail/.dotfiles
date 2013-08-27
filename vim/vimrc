@@ -225,6 +225,9 @@ set wrap
 noremap <Space> /
 noremap <S-Space> ?
 
+" Search for the word under the cursor but don't jump to next occurrence.
+nnoremap * *<C-O>
+
 " Move between windows.
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
