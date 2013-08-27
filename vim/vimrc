@@ -165,7 +165,7 @@ noremap <silent> <F7> <Esc>:cprevious<CR>
 noremap <silent> <F8> <Esc>:cnext<CR>
 
 if has("unix")
-   set gfn=Consolas:12,Inconsolata:12,Monospace\ 8
+   set gfn=Monospace\ 12
    set shell=bash
 elseif has("mac")
    set gfn=Menlo:h14
