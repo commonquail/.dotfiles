@@ -71,7 +71,7 @@ if has("autocmd")
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
+  " (happens when dropping a file on GVim).
   " Also don't do it when the mark is in the first line, that is the default
   " position when opening a file.
   autocmd BufReadPost *
@@ -178,7 +178,7 @@ set columns=85
 set background=dark
 colorscheme peaksea
 
-" gVim or Vim.
+" Remove GUI noise in GVim.
 if has("gui_running")
    set guioptions-=r	" Exclude scroll bar.
    set guioptions-=T	" Exclude toolbar.
