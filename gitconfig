@@ -13,7 +13,7 @@
 	ui = auto
 [advice]
 	pushNonFastForward = false
-[core]
-	editor = gvim
 [alias]
 	unstage = reset HEAD --
+[core]
+	editor = vim
