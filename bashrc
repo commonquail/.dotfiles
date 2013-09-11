@@ -164,3 +164,5 @@ svncl() {
     [[ -e .svn ]] && svn changelist "$@"
 }
 complete -F _svncl svncl
+
+export SVN_EDITOR=vim
