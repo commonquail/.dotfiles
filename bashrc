@@ -143,6 +143,17 @@ svndiff() {
     fi
 }
 
+# svn modified files Tab completion.
+_svndiff() {
+    [[ ${COMP_CWORD} < 2 && -e .svn ]] || return 1
+    
+    COMPREPLY=()
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    local opts="$(svn status | grep --color=never '^M '\
+        | awk '{print $2}')"
+    COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+}
+
 # svn changelist Tab completion.
 _svncl() {
     [[ -e .svn ]] || return 1
@@ -163,6 +174,7 @@ _svncl() {
 svncl() {
     [[ -e .svn ]] && svn changelist "$@"
 }
+complete -F _svndiff svndiff
 complete -F _svncl svncl
 
 export SVN_EDITOR=vim
