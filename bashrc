@@ -127,22 +127,6 @@ man() {
 	man "$@"
 }
 
-svndiff() {
-    if [[ $# -eq 1 && -f "$1" ]]; then
-        # Pipe svn diff $1 to vim.
-        # Set vim to forget the buffer and update the title to the diff file.
-        # Disable buffer editing. Read from stdin.
-        svn diff -x -w "$1" |\
-            vim -c "set buftype=nofile titlestring=$1"\
-            -c "/^@@"\
-            -nM -
-    else
-        echo "usage: svndiff <file>"
-        echo "file must be an existing, regular file (not a directory)."
-        echo "Additional arguments are ignored."
-    fi
-}
-
 # svn modified files Tab completion.
 _svndiff() {
     [[ ${COMP_CWORD} < 2 && -e .svn ]] || return 1
@@ -171,9 +155,26 @@ _svncl() {
     fi
 }
 
+svndiff() {
+    if [[ $# -eq 1 && -f "$1" ]]; then
+        # Pipe svn diff $1 to vim.
+        # Set vim to forget the buffer and update the title to the diff file.
+        # Disable buffer editing. Read from stdin.
+        svn diff -x -w "$1" |\
+            vim -c "set buftype=nofile titlestring=$1"\
+            -c "/^@@"\
+            -nM -
+    else
+        echo "usage: svndiff <file>"
+        echo "file must be an existing, regular file (not a directory)."
+        echo "Additional arguments are ignored."
+    fi
+}
+
 svncl() {
     [[ -e .svn ]] && svn changelist "$@"
 }
+
 complete -F _svndiff svndiff
 complete -F _svncl svncl
 
