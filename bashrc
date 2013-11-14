@@ -133,8 +133,7 @@ _svendiff() {
     
     COMPREPLY=()
     local cur="${COMP_WORDS[COMP_CWORD]}"
-    local opts="$(svn status | grep --color=never '^M '\
-        | awk '{print $2}')"
+    local opts="$(svn status | grep --color=never '^M ' | awk '{print $2}')"
     COMPREPLY=($(compgen -W "all ${opts}" -- ${cur}))
 }
 
