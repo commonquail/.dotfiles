@@ -135,7 +135,7 @@ _svendiff() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
     local opts="$(svn status | grep --color=never '^M '\
         | awk '{print $2}')"
-    COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+    COMPREPLY=($(compgen -W "all ${opts}" -- ${cur}))
 }
 
 # svn changelist Tab completion.
@@ -156,17 +156,24 @@ _svencl() {
 }
 
 svendiff() {
-    if [[ $# -eq 1 && -f "$1" ]]; then
-        # Pipe svn diff $1 to vim.
-        # Set vim to forget the buffer and update the title to the diff file.
-        # Disable buffer editing. Read from stdin.
-        vim -c "set buftype=nofile titlestring=$1"\
-            -c "/^@@"\
-            -nM <(svn diff -x -w "$1")
-    else
-        echo "usage: svendiff <file>"
-        echo "file must be an existing, regular file (not a directory)."
-        echo "Additional arguments are ignored."
+    if [[ $# -eq 1 ]]; then
+        if [[ "$1" == 'all' ]]; then
+            for f in $(svn status | cut -c9-); do
+                svendiff "$f"
+            done
+        elif [[ -f "$1" ]]; then
+            # Pipe svn diff $1 to vim.
+            # Set vim to forget the buffer and update the title to the diff file.
+            # Disable buffer editing. Read from stdin.
+            vim -c "set buftype=nofile titlestring=$1"\
+                -c "/^@@"\
+                -nM <(svn diff -x -w "$1")
+        else
+            echo "usage: svendiff <file>"
+            echo "file must be an existing, regular file (not a directory)."
+            echo "Additional arguments are ignored."
+            return 1
+        fi
     fi
 }
 
