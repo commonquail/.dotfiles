@@ -128,7 +128,7 @@ man() {
 }
 
 # svn modified files Tab completion.
-_svendiff() {
+_svindiff() {
     [[ ${COMP_CWORD} < 2 && -e .svn ]] || return 1
     
     COMPREPLY=()
@@ -138,7 +138,7 @@ _svendiff() {
 }
 
 # svn changelist Tab completion.
-_svencl() {
+_svincl() {
     [[ -e .svn ]] || return 1
 
     COMPREPLY=()
@@ -154,11 +154,11 @@ _svencl() {
     fi
 }
 
-svendiff() {
+svindiff() {
     if [[ $# -eq 1 ]]; then
         if [[ "$1" == 'all' ]]; then
             for f in $(svn status | cut -c9-); do
-                svendiff "$f"
+                svindiff "$f"
             done
         elif [[ -f "$1" ]]; then
             # Pipe svn diff $1 to vim.
@@ -168,7 +168,7 @@ svendiff() {
                 -c "/^@@"\
                 -nM <(svn diff -x -w "$1")
         else
-            echo "usage: svendiff <file>"
+            echo "usage: svindiff <file>"
             echo "file must be an existing, regular file (not a directory)."
             echo "Additional arguments are ignored."
             return 1
@@ -176,11 +176,11 @@ svendiff() {
     fi
 }
 
-svencl() {
+svincl() {
     [[ -e .svn ]] && svn changelist "$@"
 }
 
-complete -F _svendiff svendiff
-complete -F _svencl svencl
+complete -F _svindiff svindiff
+complete -F _svincl svincl
 
 export SVN_EDITOR=vim
