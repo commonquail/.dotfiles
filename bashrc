@@ -160,10 +160,9 @@ svendiff() {
         # Pipe svn diff $1 to vim.
         # Set vim to forget the buffer and update the title to the diff file.
         # Disable buffer editing. Read from stdin.
-        svn diff -x -w "$1" |\
-            vim -c "set buftype=nofile titlestring=$1"\
+        vim -c "set buftype=nofile titlestring=$1"\
             -c "/^@@"\
-            -nM -
+            -nM <(svn diff -x -w "$1")
     else
         echo "usage: svendiff <file>"
         echo "file must be an existing, regular file (not a directory)."
