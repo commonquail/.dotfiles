@@ -144,10 +144,12 @@ _svincl() {
     COMPREPLY=()
     local cur="${COMP_WORDS[COMP_CWORD]}"
     if [[ $COMP_CWORD -eq 1 ]]; then
+        # Find all changelists.
         local opts="$(svn status | grep --color=never '^--- Changelist'\
             | awk -F\' '{print $(NF-1)}')"
         COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
     else
+        # Find all changed files.
         local opts="$(svn status | cut -c5- | grep --color=never '^ '\
             | awk '{print $1}')"
         COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
