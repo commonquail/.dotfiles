@@ -160,7 +160,17 @@ svindiff() {
     if [[ $# -eq 1 ]]; then
         if [[ "$1" == 'all' ]]; then
             for f in $(svn status | cut -c9-); do
-                [[ -f "$f" ]] && svindiff "$f"
+                if [[ -f "${f}" ]]; then
+                    # Only show diff if file has been changed since last diff.
+                    file_touched="/tmp/svindiff/${f}"
+                    dir="${file_touched%/*}"
+                    [[ ! -d "${dir}" ]] && mkdir -p "${dir}"
+
+                    if [[ ! -f "${file_touched}"  ||
+                        "${f}" -nt "${file_touched}" ]]; then
+                        svindiff "${f}" && touch "${file_touched}"
+                    fi
+                fi
             done
         elif [[ -f "$1" ]]; then
             # Pipe svn diff $1 to vim.
