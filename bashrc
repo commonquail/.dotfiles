@@ -160,7 +160,7 @@ svindiff() {
     if [[ $# -eq 1 ]]; then
         if [[ "$1" == 'all' ]]; then
             for f in $(svn status | cut -c9-); do
-                svindiff "$f"
+                [[ -f "$f" ]] && svindiff "$f"
             done
         elif [[ -f "$1" ]]; then
             # Pipe svn diff $1 to vim.
