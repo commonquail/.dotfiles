@@ -64,7 +64,7 @@ if ${use_color} ; then
         if [[ ${EUID} == 0 ]] ; then
                 PS1='${debian_chroot:+($debian_chroot)}\[\e[0;96m\]@\h \[\e[1;34m\]\w\n\[\e[1;32m\]\$\[\e[m\] '
         else
-                PS1='\[\e[0;32m\]\u\[\e[0;96m\]@\h \[\e[1;34m\]\w\n\[\e[1;32m\]\$\[\e[m\] '
+                PS1='\[\e[01;32m\]\u\[\e[01;36m\]@\h \[\e[01;34m\]\w\n\[\e[01;32m\]\$\[\e[m\] '
         fi
 
         alias ls='ls --color=auto'
