@@ -191,3 +191,4 @@ complete -F _svindiff svindiff
 complete -F _svincl svincl
 
 export SVN_EDITOR=vim
+export VISUAL=vim
