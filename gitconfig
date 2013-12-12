@@ -20,5 +20,7 @@
 	undo = reset --hard HEAD~1
 	st = status
 	ci = commit
+	mb = checkout -b
+	co = checkout
 [core]
 	editor = vim
