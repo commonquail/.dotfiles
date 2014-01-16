@@ -106,6 +106,7 @@ set number
 set wildmenu
 set wildmode=list:longest,full
 set wildignore+=*.class
+set wildignorecase
 
 " Show current position.
 set ruler
