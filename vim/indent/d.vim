@@ -37,13 +37,25 @@ endfunction
 function GetDIndent()
   let lnum = v:lnum
   let line = getline(lnum)
+  let cind = cindent(lnum)
 
-  " Align body{}, in{}, out{} with function signature.
+  " Align contract blocks with function signature.
   if line =~ '^\s*\(body\|in\|out\)\>'
-    return cindent(SkipBlanksAndComments(lnum - 1))
+    " Skip in/out parameters.
+    if getline(lnum - 1) =~ '[(,]\s*$'
+      return cind
+    endif
+    " Find the end of the last block or the function signature.
+    if line !~ '^\s*}' && getline(lnum - 1) !~ '('
+      while getline(lnum - 1) !~ '[(}]'
+	let lnum = lnum - 1
+      endwhile
+    endif
+    let lnum = SkipBlanksAndComments(lnum)
+    return cindent(lnum - 1)
   endif
 
-  return cindent(lnum)
+  return cind
 endfunction
 
 " vim: shiftwidth=2 expandtab
