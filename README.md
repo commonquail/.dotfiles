@@ -6,7 +6,7 @@
 
 # Licence
 
-## The MIT License (MIT)
+## The MIT Licence (MIT)
 
 Copyright (c) 2013 Mikkel Kjeldsen
 
