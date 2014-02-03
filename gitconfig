@@ -22,5 +22,6 @@
 	ci = commit
 	mb = checkout -b
 	co = checkout
+	dc = diff --cached
 [core]
 	editor = vim
