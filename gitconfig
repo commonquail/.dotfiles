@@ -26,3 +26,5 @@
 	mf = merge --no-ff --edit --gpg-sign
 [core]
 	editor = vim
+[branch]
+	autosetuprebase = remote
