@@ -23,5 +23,6 @@
 	mb = checkout -b
 	co = checkout
 	dc = diff --cached
+	mf = merge --no-ff --edit --gpg-sign
 [core]
 	editor = vim
