@@ -24,6 +24,9 @@
 	co = checkout
 	dc = diff --cached
 	mf = merge --no-ff --edit --gpg-sign
+	ss = stash save
+	sa = stash apply
+	sl = stash list
 [core]
 	editor = vim
 [branch]
