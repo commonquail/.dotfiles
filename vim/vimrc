@@ -175,12 +175,12 @@ else
    set gfn=DejaVu\ LGC\ Sans\ Mono:h11,Bitstream\ Vera\ Sans\ Mono:h11
 endif
 
-set columns=85
 set background=dark
 colorscheme peaksea
 
 " Remove GUI noise in GVim.
 if has("gui_running")
+   set columns=85
    set guioptions-=r	" Exclude scroll bar.
    set guioptions-=T	" Exclude toolbar.
 endif
