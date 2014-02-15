@@ -219,7 +219,7 @@ set textwidth=300
 " Automatically wrap line-display. Does not change text.
 set wrap
 
-" Map search and backwards-search to Space/Ctrl+Space.
+" Map search and backwards-search to Space/Shift+Space.
 noremap <Space> /
 noremap <S-Space> ?
 
