@@ -9,9 +9,6 @@ set nocompatible
 " Assume a fast terminal connection.
 set ttyfast
 
-" Allow backspacing over everything in insert mode.
-set backspace=indent,eol,start
-
 " Don't store backups; do make temps when writing to file.
 set nobackup
 set noswapfile
