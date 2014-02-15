@@ -51,6 +51,9 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" Maximum width of inserted text.
+set textwidth=300
+
 if has("autocmd")
 
   " Enable file type detection.
@@ -212,9 +215,6 @@ set linebreak
 
 " Multiple spaces is a crime against language everywhere.
 set nojoinspaces
-
-" Maximum width of inserted text.
-set textwidth=300
 
 " Automatically wrap line-display. Does not change text.
 set wrap
