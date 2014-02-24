@@ -26,6 +26,8 @@
 	mf = merge --no-ff --edit --gpg-sign
 	ss = stash save
 	sl = stash list
+	rc = rebase --continue
+	ri = rebase --interactive
 [core]
 	editor = vim
 [branch]
