@@ -28,6 +28,7 @@
 	sl = stash list
 	rc = rebase --continue
 	ri = rebase --interactive
+	ca = commit --amend
 [core]
 	editor = vim
 [branch]
