@@ -134,7 +134,7 @@ set smartcase
 
 " Turn on search highlighting and toggle with Ctrl+N.
 set hlsearch
-:noremap <silent> <C-N> :se invhlsearch<CR>
+nnoremap <silent> <C-N> :set invhlsearch<CR>
 
 " Incremental search (search 'on-input').
 set incsearch
