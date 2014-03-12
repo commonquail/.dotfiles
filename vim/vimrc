@@ -132,8 +132,8 @@ set ignorecase
 " Case sensitive searching if pattern contains capital letters.
 set smartcase
 
-" Turn off search highlighting, but toggle with Ctrl+N.
-set nohlsearch
+" Turn on search highlighting and toggle with Ctrl+N.
+set hlsearch
 :noremap <silent> <C-N> :se invhlsearch<CR>
 
 " Incremental search (search 'on-input').
