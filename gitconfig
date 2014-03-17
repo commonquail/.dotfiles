@@ -29,6 +29,7 @@
 	rc = rebase --continue
 	ri = rebase --interactive
 	ca = commit --amend
+	can = commit --amend --no-edit
 [core]
 	editor = vim
 [branch]
