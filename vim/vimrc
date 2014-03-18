@@ -1,7 +1,7 @@
 " The Windows equivalent of ~/.vim is ~/vimfiles. Force Vim to look in ~/.vim
 " for platform agnosticism, though only on Windows.
 if has('win32')
-    set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
+  set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
 endif
 
 set nocompatible
@@ -61,27 +61,25 @@ if has("autocmd")
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
+    au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on GVim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on GVim).
+    " Also don't do it when the mark is in the first line, that is the default
+    " position when opening a file.
+    autocmd BufReadPost *
+          \ if line("'\"") > 1 && line("'\"") <= line("$") |
+          \   exe "normal! g`\"" |
+          \ endif
 
   augroup END
 
 else
-
   set autoindent        " always set autoindenting on
-
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -89,7 +87,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-          \ | wincmd p | diffthis
+        \ | wincmd p | diffthis
 endif
 
 " 7 line vertical scroll buffer.
@@ -156,13 +154,13 @@ noremap <silent> <F7> <Esc>:cprevious<CR>
 noremap <silent> <F8> <Esc>:cnext<CR>
 
 if has("unix")
-   set gfn=Monospace\ 12
-   set shell=bash
+  set gfn=Monospace\ 12
+  set shell=bash
 elseif has("mac")
-   set gfn=Menlo:h14
-   set shell=bash
+  set gfn=Menlo:h14
+  set shell=bash
 else
-   set gfn=DejaVu\ LGC\ Sans\ Mono:h11,Bitstream\ Vera\ Sans\ Mono:h11
+  set gfn=DejaVu\ LGC\ Sans\ Mono:h11,Bitstream\ Vera\ Sans\ Mono:h11
 endif
 
 set background=dark
@@ -170,9 +168,9 @@ colorscheme peaksea
 
 " Remove GUI noise in GVim.
 if has("gui_running")
-   set columns=85
-   set guioptions-=r	" Exclude scroll bar.
-   set guioptions-=T	" Exclude toolbar.
+  set columns=85
+  set guioptions-=r	" Exclude scroll bar.
+  set guioptions-=T	" Exclude toolbar.
 endif
 
 " Default encoding.
@@ -180,7 +178,7 @@ set encoding=utf8
 
 " Prioritised list of file encodings to try.
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-    set fileencodings=utf-8,latin1
+  set fileencodings=utf-8,latin1
 endif
 
 " Substitute spaces for tabs.
@@ -230,9 +228,9 @@ noremap <Leader>tm :tabmove
 
 " Specify the behaviour when switching between buffers.
 try
-    set switchbuf=usetab
-    " Show tab line only if there are at least two tabs.
-    set showtabline=1
+  set switchbuf=usetab
+  " Show tab line only if there are at least two tabs.
+  set showtabline=1
 catch
 endtry
 
@@ -252,17 +250,17 @@ set statusline+=%P              " Percentage through file.
 
 " Move a line of text using Alt+[jk].
 if has("unix") || has("win32")
-    if has("gui_running")
-        nnoremap <M-k> mz:m-2<CR>`z
-        nnoremap <M-j> mz:m+<CR>`z
-        vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
-        vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
-    else
-        nnoremap k mz:m-2<CR>`z
-        nnoremap j mz:m+<CR>`z
-        vnoremap k :m'<-2<CR>`>my`<mzgv`yo`z
-        vnoremap j :m'>+<CR>`<my`>mzgv`yo`z
-    endif
+  if has("gui_running")
+    nnoremap <M-k> mz:m-2<CR>`z
+    nnoremap <M-j> mz:m+<CR>`z
+    vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
+    vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
+  else
+    nnoremap k mz:m-2<CR>`z
+    nnoremap j mz:m+<CR>`z
+    vnoremap k :m'<-2<CR>`>my`<mzgv`yo`z
+    vnoremap j :m'>+<CR>`<my`>mzgv`yo`z
+  endif
 endif
 
 " Repeat last action and return to starting position.
