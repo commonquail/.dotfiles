@@ -274,6 +274,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'edsono/vim-matchit'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc'
+Bundle 'Valloric/YouCompleteMe'
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
