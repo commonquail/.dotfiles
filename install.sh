@@ -24,9 +24,12 @@ for file in ${files}; do
   echo
 
 done
-echo "Done."
 
 unset dot
 unset files
 unset backup
 unset dotfilesdir
+
+echo "Preparing Vim..."
+vim +BundleInstall +qall
+echo "Done."
