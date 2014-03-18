@@ -51,9 +51,6 @@ if &t_Co > 2 || has("gui_running")
   nnoremap <silent> <C-N> :set invhlsearch<CR>
 endif
 
-" Maximum width of inserted text.
-set textwidth=300
-
 if has("autocmd")
 
   " Enable file type detection.
