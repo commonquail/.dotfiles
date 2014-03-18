@@ -265,21 +265,3 @@ endif
 
 " Repeat last action and return to starting position.
 nnoremap . .`[
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Toggle spell checking.
-noremap <Leader>ss :setlocal spell! spelllang=en_gb<CR>
-
-" Go to next misspelled word after cursor.
-noremap <Leader>sn ]s
-
-" Go to previous misspelled word before cursor.
-noremap <Leader>sp [s
-
-" Add word under cursor to word list.
-noremap <Leader>sa zg
-
-" Suggest alternate spelling.
-noremap <Leader>sw z=
