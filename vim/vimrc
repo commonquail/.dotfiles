@@ -265,3 +265,10 @@ endif
 
 " Repeat last action and return to starting position.
 nnoremap . .`[
+
+set runtimepath+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'edsono/vim-matchit'
