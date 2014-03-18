@@ -120,9 +120,6 @@ set backspace=eol,start,indent
 " Additional characters allowed to traverse line breaks.
 set whichwrap+=<,>,h,l
 
-" Make Backspace delete the character in front of the cursor.
-noremap <BS> X
-
 " Report all line changes from :substitute.
 set report=0
 
