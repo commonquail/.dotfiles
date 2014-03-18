@@ -282,6 +282,7 @@ Bundle 'Valloric/YouCompleteMe'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
 nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async<CR>
+nnoremap <leader>g :<C-u>Unite grep:.<CR>
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
