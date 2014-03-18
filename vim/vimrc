@@ -278,3 +278,11 @@ Bundle 'Shougo/vimproc'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
 nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async<CR>
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+  set grepformat=%f:%l:%c:%m
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup --smart-case -C2'
+  let g:unite_source_grep_recursive_opt=''
+endif
