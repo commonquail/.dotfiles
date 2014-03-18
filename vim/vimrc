@@ -272,3 +272,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'edsono/vim-matchit'
+Bundle 'Shougo/unite.vim'
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>f :<C-u>Unite -start-insert file<CR>
+nnoremap <leader>r :<C-u>Unite -start-insert file_rec<CR>
