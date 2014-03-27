@@ -124,3 +124,6 @@ man() {
 
 export SVN_EDITOR=vim
 export VISUAL=vim
+
+home_bin=~/bin
+[[ -d "$home_bin" ]] && export PATH="$home_bin:$PATH"
