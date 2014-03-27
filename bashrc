@@ -127,3 +127,6 @@ export VISUAL=vim
 
 home_bin=~/bin
 [[ -d "$home_bin" ]] && export PATH="$home_bin:$PATH"
+
+composer_bin=~/.composer/vendor/bin
+[[ -d "$composer_bin" ]] && export PATH="$composer_bin:$PATH"
