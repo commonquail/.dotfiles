@@ -30,7 +30,7 @@
 	ri = rebase --interactive
 	ca = commit --amend
 	can = commit --amend --no-edit
-	cleanorig = clean -f */*.orig
+	cleanorig = clean -f *.orig
 [core]
 	editor = vim
 [branch]
