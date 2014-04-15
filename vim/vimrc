@@ -275,6 +275,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'edsono/vim-matchit'
+Bundle 'StanAngeloff/php.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc'
 Bundle 'Valloric/YouCompleteMe'
