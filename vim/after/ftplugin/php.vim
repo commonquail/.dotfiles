@@ -1,3 +1,4 @@
+compiler php
 setlocal shiftwidth=4
 let php_sql_query=1
 let php_htmlInStrings=1
