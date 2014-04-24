@@ -35,3 +35,5 @@
 	cleanorig = clean -f *.orig
 [branch]
 	autosetuprebase = remote
+[include]
+	path = .git_local
