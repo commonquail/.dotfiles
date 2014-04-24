@@ -33,7 +33,5 @@
 	ca = commit --amend
 	can = commit --amend --no-edit
 	cleanorig = clean -f *.orig
-[branch]
-	autosetuprebase = remote
 [include]
 	path = .git_local
