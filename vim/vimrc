@@ -162,6 +162,7 @@ endif
 
 set background=dark
 colorscheme peaksea
+set colorcolumn=81
 
 " Remove GUI noise in GVim.
 if has("gui_running")
