@@ -266,14 +266,14 @@ nnoremap . .`[
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'edsono/vim-matchit'
-Bundle '2072/PHP-Indenting-for-VIm'
-Bundle 'StanAngeloff/php.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'gmarik/vundle'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'edsono/vim-matchit'
+Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc'
+Plugin 'Valloric/YouCompleteMe'
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
