@@ -4,8 +4,10 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+    *i*)
+        ;;
+    *)
+        return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -47,37 +49,37 @@ match_lhs=""
 [[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
 [[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
 [[ -z ${match_lhs}    ]] \
-        && type -P dircolors >/dev/null \
-        && match_lhs=$(dircolors --print-database)
+    && type -P dircolors >/dev/null \
+    && match_lhs=$(dircolors --print-database)
 [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
 
 if ${use_color} ; then
-        # Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
-        if type -P dircolors >/dev/null ; then
-                if [[ -f ~/.dir_colors ]] ; then
-                        eval $(dircolors -b ~/.dir_colors)
-                elif [[ -f /etc/DIR_COLORS ]] ; then
-                        eval $(dircolors -b /etc/DIR_COLORS)
-                fi
+    # Enable colors for ls, etc. Prefer ~/.dir_colors #64489
+    if type -P dircolors >/dev/null ; then
+        if [[ -f ~/.dir_colors ]] ; then
+            eval $(dircolors -b ~/.dir_colors)
+        elif [[ -f /etc/DIR_COLORS ]] ; then
+            eval $(dircolors -b /etc/DIR_COLORS)
         fi
+    fi
 
-        if [[ ${EUID} == 0 ]] ; then
-                PS1='${debian_chroot:+($debian_chroot)}\[\e[0;96m\]@\h \[\e[1;34m\]\w\n\[\e[1;32m\]\$\[\e[m\] '
-        else
-                PS1='\[\e[01;32m\]\u\[\e[01;36m\]@\h \[\e[01;34m\]\w\n\[\e[01;32m\]\$\[\e[m\] '
-        fi
+    if [[ ${EUID} == 0 ]] ; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\e[0;96m\]@\h \[\e[1;34m\]\w\n\[\e[1;32m\]\$\[\e[m\] '
+    else
+        PS1='\[\e[01;32m\]\u\[\e[01;36m\]@\h \[\e[01;34m\]\w\n\[\e[01;32m\]\$\[\e[m\] '
+    fi
 
-        alias ls='ls --color=auto'
-        alias grep='grep --colour=auto'
-        alias fgrep='fgrep --color=auto'
-        alias egrep='egrep --color=auto'
+    alias ls='ls --color=auto'
+    alias grep='grep --colour=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 else
-        if [[ ${EUID} == 0 ]] ; then
-                # show root@ when we don't have colors
-                PS1='\u@\h \W \$ '
-        else
-                PS1='\u@\h \w \$ '
-        fi
+    if [[ ${EUID} == 0 ]] ; then
+        # show root@ when we don't have colors
+        PS1='\u@\h \W \$ '
+    else
+        PS1='\u@\h \w \$ '
+    fi
 fi
 unset use_color safe_term match_lhs
 
@@ -103,23 +105,23 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 man() {
-	env \
-	LESS_TERMCAP_mb=$(printf "\e[1;32m") \
-	LESS_TERMCAP_md=$(printf "\e[1;96m") \
-	LESS_TERMCAP_me=$(printf "\e[0m") \
-	LESS_TERMCAP_se=$(printf "\e[0m") \
-	LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-	LESS_TERMCAP_ue=$(printf "\e[0m") \
-	LESS_TERMCAP_us=$(printf "\e[1;4;32m") \
-	man "$@"
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;32m") \
+        LESS_TERMCAP_md=$(printf "\e[1;96m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;4;32m") \
+        man "$@"
 }
 
 export SVN_EDITOR=vim
