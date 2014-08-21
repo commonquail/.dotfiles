@@ -74,23 +74,9 @@ if ${use_color} ; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 else
-    if [[ ${EUID} == 0 ]] ; then
-        # show root@ when we don't have colors
-        PS1='\u@\h \W \$ '
-    else
-        PS1='\u@\h \w \$ '
-    fi
+    PS1='\u@\h \w \$ '
 fi
 unset use_color safe_term match_lhs
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
