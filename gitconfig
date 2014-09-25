@@ -39,3 +39,5 @@
 	pr = pull --rebase
 [include]
 	path = .git_local
+[merge]
+	tool = meld
