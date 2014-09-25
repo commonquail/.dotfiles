@@ -36,5 +36,6 @@
 	searchchange = log --pickaxe-regex -S
 	searchdiff = log -G
 	searchlog = log --grep
+	pr = pull --rebase
 [include]
 	path = .git_local
