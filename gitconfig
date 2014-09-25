@@ -41,3 +41,5 @@
 	path = .git_local
 [merge]
 	tool = meld
+[pull]
+	rebase = true
