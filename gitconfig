@@ -33,5 +33,8 @@
 	ca = commit --amend
 	can = commit --amend --no-edit
 	cleanorig = clean -f *.orig
+	searchchange = log --pickaxe-regex -S
+	searchdiff = log -G
+	searchlog = log --grep
 [include]
 	path = .git_local
