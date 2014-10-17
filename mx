@@ -1,0 +1,18 @@
+#!/bin/bash
+session="${PWD##*/}"
+
+if tmux has-session -t "${session}" 1>/dev/null 2>&1
+then
+    tmux attach -t "${session}"
+    exit $?
+fi
+
+tmux new-session -d -s "$session" -n 'notes'
+tmux send-keys -t "$session":1 'vim notes.yml' C-m
+
+tmux new-window -t "$session"
+tmux send-keys -t "$session":2 tig C-m
+
+tmux new-window -t "$session"
+
+tmux attach -t "$session"
