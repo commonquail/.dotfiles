@@ -37,6 +37,7 @@
 	searchdiff = log -G
 	searchlog = log --grep
 	pr = pull --rebase
+	archive-branch = "!f() { git tag -a \"archive/$1\" \"$1\" -m \"archived branch: $1\" && git branch -D \"$1\"; } && f"
 [include]
 	path = .git_local
 [merge]
