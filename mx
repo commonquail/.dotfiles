@@ -1,5 +1,21 @@
 #!/bin/bash
 
+# Tmux assigns special meaning to certain characters, such as the period,
+# so it is necessary to clean up input session names.
+#
+# The user is responsible for ensuring a given session name has been
+# cleaned up before tmux receives it.
+#
+# Arguments:
+# - outvar: the name of an out-variable to store the result in
+# - string: the session name to normalise
+normalise_session_name()
+{
+    local _outvar=$1
+    local _in=$2
+    eval $_outvar="${_in//[.:]/-}"
+}
+
 list_sessions()
 {
     tmux list-sessions
@@ -28,12 +44,13 @@ attach_if_session_exists()
 
 if [[ $# != 0 ]]
 then
-    arg="$1"
-    attach_if_session_exists "${arg}" || list_sessions
+    normalise_session_name session "$1"
+    attach_if_session_exists "${session}" || list_sessions
     exit $?
 fi
 
 session="${PWD##*/}"
+normalise_session_name session "${session}"
 
 attach_if_session_exists "${session}" && exit $?
 
