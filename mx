@@ -1,11 +1,41 @@
 #!/bin/bash
-session="${PWD##*/}"
 
-if tmux has-session -t "${session}" 1>/dev/null 2>&1
+list_sessions()
+{
+    tmux list-sessions
+}
+
+has_session()
+{
+    tmux has-session -t "$1" 1>/dev/null 2>&1
+}
+
+attach_to_session()
+{
+    tmux attach -t "$1"
+}
+
+attach_if_session_exists()
+{
+    if has_session "$1"
+    then
+        attach_to_session "$1"
+        return $?
+    fi
+
+    return 1
+}
+
+if [[ $# != 0 ]]
 then
-    tmux attach -t "${session}"
+    arg="$1"
+    attach_if_session_exists "${arg}" || list_sessions
     exit $?
 fi
+
+session="${PWD##*/}"
+
+attach_if_session_exists "${session}" && exit $?
 
 tmux new-session -d -s "$session" -n 'notes'
 tmux send-keys -t "$session":1 'vim notes.yml' C-m
@@ -15,4 +45,4 @@ tmux send-keys -t "$session":2 tig C-m
 
 tmux new-window -t "$session"
 
-tmux attach -t "$session"
+attach_to_session "$session"
