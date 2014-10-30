@@ -1,5 +1,10 @@
 #!/bin/bash
 
+list_sessions()
+{
+    tmux list-sessions
+}
+
 has_session()
 {
     tmux has-session -t "$1" 1>/dev/null 2>&1
@@ -20,6 +25,13 @@ attach_if_session_exists()
 
     return 1
 }
+
+if [[ $# != 0 ]]
+then
+    arg="$1"
+    attach_if_session_exists "${arg}" || list_sessions
+    exit $?
+fi
 
 session="${PWD##*/}"
 
