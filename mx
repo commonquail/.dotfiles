@@ -18,7 +18,12 @@ normalise_session_name()
 
 list_sessions()
 {
-    tmux list-sessions
+    if ps -e | grep -q tmux
+    then
+        tmux list-sessions
+    else
+        echo "tmux server not running."
+    fi
 }
 
 has_session()
