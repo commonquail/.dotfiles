@@ -40,6 +40,7 @@
 	archive-branch = "!f() { git tag -a \"archive/$1\" \"$1\" -m \"archived branch: $1\" && git branch -D \"$1\"; } && f"
 	ls-files-changed = diff --name-status
 	mt = mergetool
+	up = pull --ff --ff-only
 [include]
 	path = .git_local
 [merge]
