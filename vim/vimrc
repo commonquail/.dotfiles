@@ -37,6 +37,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " Map jk to to leave insert mode.
 inoremap jk <Esc>
+inoremap jf <Esc>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
