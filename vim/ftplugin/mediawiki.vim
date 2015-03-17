@@ -20,3 +20,8 @@ noremap <buffer> A g$a
 
 inoremap <buffer> <Up> <C-O>gk
 inoremap <buffer> <Down> <C-O>gj
+
+" Treat lists, indented text, and tables as comment lines
+" and continue with the same formatting.
+setlocal comments=n:#,n:*,n:\:,s:{\|,m:\|,ex:\|}
+setlocal formatoptions+=roq
