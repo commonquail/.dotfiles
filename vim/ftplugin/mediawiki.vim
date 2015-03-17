@@ -25,3 +25,6 @@ inoremap <buffer> <Down> <C-O>gj
 " and continue with the same formatting.
 setlocal comments=n:#,n:*,n:\:,s:{\|,m:\|,ex:\|}
 setlocal formatoptions+=roq
+
+" Insert a matching = automatically while starting a new header.
+inoremap <buffer> <silent> = <C-R>=(getline('.')==''\|\|getline('.')=~'^=\+$')?"==\<LT>Left>":"="<CR>
