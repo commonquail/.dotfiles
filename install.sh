@@ -1,11 +1,9 @@
 #!/bin/bash
-backup="${HOME}/dotfiles_$(date +'%Y-%m-%d-%H%M%S')"
+backup="${HOME}/dotfiles_$(date +'%Y-%m-%d_%H-%M-%S')"
 files="inputrc bashrc bash_aliases gitconfig vim vimrc tmux.conf tigrc"
-dotfilesdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+dotfilesdir="$PWD"
 
-if [ ! -d "${backup}" ]; then
-  mkdir "${backup}"
-fi
+[[ -d "${backup}" ]] || mkdir "${backup}"
 
 chmod a+w "${backup}"
 
@@ -13,11 +11,11 @@ chmod a+w "${backup}"
 for file in ${files}; do
 
   dot="${HOME}/.${file}"
+  dest="${backup}/${file}"
 
-  if [ -e "${dot}" ]; then
-    echo "Moving ${dot} to ${backup}..."
-    mv -v "${dot}" "${backup}/${file}"
-  fi
+  [[ -e "${dot}" ]] && \
+      echo "Moving ${dot} to ${dest}" && \
+      mv -v "${dot}" "${dest}"
 
   echo "Symlinking ${dot}..."
   ln -v -s "${dotfilesdir}/${file}" "${dot}"
