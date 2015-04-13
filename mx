@@ -59,11 +59,8 @@ normalise_session_name session "${session}"
 
 attach_if_session_exists "${session}" && exit $?
 
-tmux new-session -d -s "$session" -n 'notes'
-tmux send-keys -t "$session":1 'vim notes.yml' C-m
-
-tmux new-window -t "$session"
-tmux send-keys -t "$session":2 tig C-m
+tmux new-session -d -s "$session"
+tmux send-keys -t "$session":1 tig C-m
 
 tmux new-window -t "$session"
 
