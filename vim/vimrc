@@ -269,7 +269,6 @@ set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Plugin 'gmarik/vundle'
-Plugin 'Lokaltog/vim-easymotion'
 Plugin 'edsono/vim-matchit'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'StanAngeloff/php.vim'
