@@ -265,6 +265,8 @@ endif
 " Repeat last action and return to starting position.
 nnoremap . .`[
 
+set showcmd
+
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
