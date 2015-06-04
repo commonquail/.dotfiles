@@ -20,16 +20,42 @@ set hidden
 set history=700
 
 " A map leader can be used to alias commands.
-let g:mapleader = ","
+map <Space> <Leader>
 
 " Quick save.
-nnoremap <Leader>w :w!<CR>
+nnoremap <Leader>fs :w!<CR>
 
 " Fast editing of $VIM/.vim/vimrc
 noremap <Leader>e :e! ~/.vim/vimrc<CR>
 
 " Reload vimrc after edit.
 autocmd! BufWritePost vimrc source ~/.vim/vimrc
+
+" Spacemacs-like bindings.
+
+" Buffer manipulation.
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bd :bdelete<CR>
+
+" Window manipulation.
+nnoremap <Leader>wsh :split<CR>
+nnoremap <Leader>wsv :vsplit<CR>
+nnoremap <Leader>wc :close<CR>
+
+nnoremap <Leader>wj <C-W>j
+nnoremap <Leader>wk <C-W>k
+nnoremap <Leader>wh <C-W>h
+nnoremap <Leader>wl <C-W>l
+
+" Tab manipulation.
+noremap <Leader>tn :tabnew! %<CR>
+noremap <Leader>te :tabedit
+noremap <Leader>tc :tabclose<CR>
+noremap <Leader>tm :tabmove
+
+" Option manipulation.
+nnoremap <Leader>osh :set invhlsearch<CR>
 
 " Ctrl-U in insert mode deletes a lot. Use Ctrl-G u to first break undo,
 " so that you can undo Ctrl-U after inserting a line break.
@@ -205,24 +231,11 @@ set nojoinspaces
 " Automatically wrap line-display. Does not change text.
 set wrap
 
-" Map search and backwards-search to Space/Shift+Space.
-noremap <Space> /
-noremap <S-Space> ?
+nnoremap <Leader><Space> /
+nnoremap <Leader><S-Space> ?
 
 " Search for the word under the cursor but don't jump to next occurrence.
 nnoremap * *<C-O>
-
-" Move between windows.
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
-
-" Tab configuration.
-noremap <Leader>tn :tabnew! %<CR>
-noremap <Leader>te :tabedit
-noremap <Leader>tc :tabclose<CR>
-noremap <Leader>tm :tabmove
 
 " Specify the behaviour when switching between buffers.
 try
@@ -278,9 +291,9 @@ Plugin 'Shougo/vimproc'
 Plugin 'Valloric/YouCompleteMe'
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
-nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async<CR>
-nnoremap <leader>ag :<C-u>Unite grep:.<CR>
+nnoremap <Leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
+nnoremap <Leader>r :<C-u>Unite -start-insert file_rec/async<CR>
+nnoremap <Leader>ag :<C-u>Unite grep:.<CR>
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
