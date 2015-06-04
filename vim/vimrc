@@ -23,7 +23,7 @@ set history=700
 map <Space> <Leader>
 
 " Quick save.
-nnoremap <Leader>w :w!<CR>
+nnoremap <Leader>fs :w!<CR>
 
 " Fast editing of $VIM/.vim/vimrc
 noremap <Leader>e :e! ~/.vim/vimrc<CR>
