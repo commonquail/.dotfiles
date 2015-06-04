@@ -280,6 +280,18 @@ endif
 " Repeat last action and return to starting position.
 nnoremap . .`[
 
+" Emacs-bindings in command mode.
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+if has("gui_running")
+  cnoremap <M-b> <S-Left>
+  cnoremap <M-f> <S-Right>
+else
+  cnoremap b <S-Left>
+  cnoremap f <S-Right>
+endif
+
 set showcmd
 
 set runtimepath+=~/.vim/bundle/vundle/
