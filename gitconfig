@@ -41,6 +41,7 @@
 	ls-files-changed = diff --name-status
 	mt = mergetool
 	up = pull --ff --ff-only
+	transplant = "!f() { git rebase --onto \"$1\" $(git rev-list -1 --merges HEAD); } && f"
 [include]
 	path = .git_local
 [merge]
