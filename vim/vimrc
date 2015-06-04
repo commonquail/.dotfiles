@@ -20,7 +20,7 @@ set hidden
 set history=700
 
 " A map leader can be used to alias commands.
-let g:mapleader = ","
+map <Space> <Leader>
 
 " Quick save.
 nnoremap <Leader>w :w!<CR>
@@ -205,9 +205,8 @@ set nojoinspaces
 " Automatically wrap line-display. Does not change text.
 set wrap
 
-" Map search and backwards-search to Space/Shift+Space.
-noremap <Space> /
-noremap <S-Space> ?
+nnoremap <Leader><Space> /
+nnoremap <Leader><S-Space> ?
 
 " Search for the word under the cursor but don't jump to next occurrence.
 nnoremap * *<C-O>
