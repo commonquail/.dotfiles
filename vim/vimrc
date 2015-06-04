@@ -31,6 +31,32 @@ noremap <Leader>e :e! ~/.vim/vimrc<CR>
 " Reload vimrc after edit.
 autocmd! BufWritePost vimrc source ~/.vim/vimrc
 
+" Spacemacs-like bindings.
+
+" Buffer manipulation.
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bd :bdelete<CR>
+
+" Window manipulation.
+nnoremap <Leader>wsh :split<CR>
+nnoremap <Leader>wsv :vsplit<CR>
+nnoremap <Leader>wc :close<CR>
+
+nnoremap <Leader>wj <C-W>j
+nnoremap <Leader>wk <C-W>k
+nnoremap <Leader>wh <C-W>h
+nnoremap <Leader>wl <C-W>l
+
+" Tab manipulation.
+noremap <Leader>tn :tabnew! %<CR>
+noremap <Leader>te :tabedit
+noremap <Leader>tc :tabclose<CR>
+noremap <Leader>tm :tabmove
+
+" Option manipulation.
+nnoremap <Leader>osh :set invhlsearch<CR>
+
 " Ctrl-U in insert mode deletes a lot. Use Ctrl-G u to first break undo,
 " so that you can undo Ctrl-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -210,18 +236,6 @@ nnoremap <Leader><S-Space> ?
 
 " Search for the word under the cursor but don't jump to next occurrence.
 nnoremap * *<C-O>
-
-" Move between windows.
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
-
-" Tab configuration.
-noremap <Leader>tn :tabnew! %<CR>
-noremap <Leader>te :tabedit
-noremap <Leader>tc :tabclose<CR>
-noremap <Leader>tm :tabmove
 
 " Specify the behaviour when switching between buffers.
 try
