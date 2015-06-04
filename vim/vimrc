@@ -57,6 +57,9 @@ noremap <Leader>tm :tabmove
 " Option manipulation.
 nnoremap <Leader>osh :set invhlsearch<CR>
 
+" Yank buffer to clipboard.
+nnoremap <Leader>ya :%ya+<CR>
+
 " Ctrl-U in insert mode deletes a lot. Use Ctrl-G u to first break undo,
 " so that you can undo Ctrl-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
