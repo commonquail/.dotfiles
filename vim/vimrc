@@ -189,8 +189,6 @@ else
   set gfn=DejaVu\ LGC\ Sans\ Mono:h11,Bitstream\ Vera\ Sans\ Mono:h11
 endif
 
-set background=dark
-colorscheme peaksea
 set colorcolumn=81
 
 " Remove GUI noise in GVim.
@@ -297,6 +295,7 @@ set showcmd
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Plugin 'freeo/vim-kalisi'
 Plugin 'gmarik/vundle'
 Plugin 'edsono/vim-matchit'
 Plugin '2072/PHP-Indenting-for-VIm'
@@ -327,3 +326,6 @@ let g:ycm_filetype_blacklist = {
       \ 'infolog': 1,
       \ 'mail': 1
       \}
+
+colorscheme kalisi
+set background=dark
