@@ -118,3 +118,6 @@ home_bin=~/bin
 
 composer_bin=~/.composer/vendor/bin
 [[ -d "$composer_bin" ]] && export PATH="$composer_bin:$PATH"
+
+npm_bin=~/.npm/bin
+[[ -d "$npm_bin" ]] && export PATH="$npm_bin:$PATH"

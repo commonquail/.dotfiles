@@ -1,6 +1,6 @@
 #!/bin/bash
 backup="${HOME}/dotfiles_$(date +'%Y-%m-%d_%H-%M-%S')"
-files="inputrc bashrc bash_aliases gitconfig vim vimrc tmux.conf tigrc"
+files="inputrc bashrc bash_aliases gitconfig vim vimrc tmux.conf tigrc npmrc"
 dotfilesdir="$PWD"
 
 [[ -d "${backup}" ]] || mkdir "${backup}"
