@@ -1,0 +1,42 @@
+map <Space> <leader>
+
+nnoremap <Leader>fs :w!<CR>
+
+nnoremap <Leader><Space> /
+
+nnoremap <Leader>tn gt
+nnoremap <Leader>tp gT
+
+nnoremap <Leader>wn gt
+nnoremap <Leader>wp gT
+nnoremap <Leader>wsh :split<CR>
+nnoremap <Leader>wsv :vsplit<CR>
+nnoremap <Leader>wc :close<CR>
+
+nnoremap <Leader>wj <C-W>j
+nnoremap <Leader>wk <C-W>k
+nnoremap <Leader>wh <C-W>h
+nnoremap <Leader>wl <C-W>l
+
+nnoremap <Leader>osh :set invhlsearch<CR>
+
+" For some reason this doesn't work quite right.
+" The command line loses focus
+" and requires pressing Tab once.
+nnoremap <Leader>al :actionlist 
+
+nnoremap <Leader>ao :action OverrideMethods<CR>
+nnoremap <Leader>agc :action GenerateConstructor<CR>
+nnoremap <Leader>agi :action GotoImplementation<CR>
+
+inoremap jf <Esc>
+
+nnoremap . .`[
+nnoremap * *<C-O>
+
+set ignorecase
+set smartcase
+set hlsearch
+"set incsearch
+set scrolloff=7
+"set whichwrap+=<,>,h,l
