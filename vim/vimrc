@@ -277,9 +277,9 @@ Plugin 'Shougo/vimproc'
 Plugin 'Valloric/YouCompleteMe'
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
-nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async<CR>
-nnoremap <leader>ag :<C-u>Unite grep:.<CR>
+nnoremap <Leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
+nnoremap <Leader>r :<C-u>Unite -start-insert file_rec/async<CR>
+nnoremap <Leader>ag :<C-u>Unite grep:.<CR>
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
