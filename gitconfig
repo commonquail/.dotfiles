@@ -25,7 +25,7 @@
 	mb = checkout -b
 	co = checkout
 	dc = diff --cached
-	mf = merge --no-ff --no-edit
+	mf = merge --no-ff
 	ss = stash save
 	sl = stash list
 	rc = rebase --continue
