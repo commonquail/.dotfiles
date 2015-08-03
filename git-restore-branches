@@ -1,0 +1,76 @@
+#!/bin/bash
+#
+# Restores the branchnames of all merged branches
+# between two revisions
+# and prints them to stdout.
+#
+# If the end revision is omitted it defaults to HEAD.
+#
+# If a branchname already exists,
+# it is not moved,
+# the branchname is not printed to stdout,
+# and an error is printed to stderr.
+
+# Prints usage to stderr and exits with error code 1.
+usage()
+{
+    errcho "git restore-branches <from-rev> [<to-rev>]"
+    exit 1
+}
+
+# Echos all arguments to stderr as a single string.
+errcho()
+{
+    >&2 echo "$@"
+}
+
+# Extracts the branchname from a standard formatted merge commit.
+#
+# Arguments:
+# - outvar: the name of an out-variable to store the branchname in
+# - string: the merge commit rev
+branchname_from_merge_commit()
+{
+    local _outvar=$1
+    local _merge_commit="$2"
+    eval $_outvar="$(git log -1 --format=%s "${_merge_commit}" | \
+        awk -F\' '{print $2}')"
+}
+
+# Outputs the sha1s of all merge commits
+# and the last commit on the merged-in branch
+# in the given Git revision range.
+#
+# Arguments:
+# - string: a valid Git revision range
+merge_points_between()
+{
+    local _range="$1"
+    git rev-list --merges --parents "${_range}" | awk '{print $1, $3}'
+}
+
+# Outputs the sha1 of a valid Git revision.
+#
+# Arguments:
+# - string: a valid Git revision
+sha1_of_rev()
+{
+    local _rev="$1"
+    git rev-parse --verify "$_rev" 2>/dev/null
+}
+
+[[ $# -eq 0 ]] && usage
+
+from="$1"
+to="${2:-HEAD}"
+
+while read merge_commit last_branch_commit; do
+    branchname_from_merge_commit branchname "$merge_commit"
+
+    if git branch "$branchname" "$last_branch_commit" 2>/dev/null; then
+        echo $branchname
+    else
+        sha1="$(sha1_of_rev "$branchname")"
+        errcho "skipped '${branchname}': already exists at ${sha1}"
+    fi
+done < <(merge_points_between "${from}..${to}")
