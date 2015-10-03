@@ -184,24 +184,7 @@ noremap <silent> <F6> <Esc>:make<CR><CR>
 noremap <silent> <F7> <Esc>:cprevious<CR>
 noremap <silent> <F8> <Esc>:cnext<CR>
 
-if has("unix")
-  set gfn=Monospace\ 12
-  set shell=bash
-elseif has("mac")
-  set gfn=Menlo:h14
-  set shell=bash
-else
-  set gfn=DejaVu\ LGC\ Sans\ Mono:h11,Bitstream\ Vera\ Sans\ Mono:h11
-endif
-
 set colorcolumn=81
-
-" Remove GUI noise in GVim.
-if has("gui_running")
-  set columns=85
-  set guioptions-=r	" Exclude scroll bar.
-  set guioptions-=T	" Exclude toolbar.
-endif
 
 " Substitute spaces for tabs.
 set expandtab
