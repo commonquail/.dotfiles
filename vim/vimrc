@@ -18,7 +18,7 @@ set noswapfile
 set hidden
 
 " Number of lines to retain in Vim's history.
-set history=700
+set history=10000
 
 " A map leader can be used to alias commands.
 map <Space> <Leader>
