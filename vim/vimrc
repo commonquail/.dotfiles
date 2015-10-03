@@ -87,6 +87,21 @@ if &t_Co > 2 || has("gui_running")
   nnoremap <silent> <C-N> :set invhlsearch<CR>
 endif
 
+set runtimepath+=~/.vim/bundle/Vundle.vim/
+call vundle#begin('~/.vim/bundle')
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'freeo/vim-kalisi'
+Plugin 'edsono/vim-matchit'
+Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc'
+Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end()
+
 if has("autocmd")
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
@@ -282,18 +297,6 @@ cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 
 set showcmd
-
-set runtimepath+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Plugin 'freeo/vim-kalisi'
-Plugin 'gmarik/vundle'
-Plugin 'edsono/vim-matchit'
-Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimproc'
-Plugin 'Valloric/YouCompleteMe'
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <Leader>f :<C-u>Unite -start-insert -profile-name=files file<CR>
