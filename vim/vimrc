@@ -95,7 +95,6 @@ call vundle#end()
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-  nnoremap <silent> <C-N> :set invhlsearch<CR>
 endif
 
 if has("autocmd")
