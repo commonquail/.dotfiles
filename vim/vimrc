@@ -1,9 +1,3 @@
-" The Windows equivalent of ~/.vim is ~/vimfiles. Force Vim to look in ~/.vim
-" for platform agnosticism, though only on Windows.
-if has('win32')
-  set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
-endif
-
 set nocompatible
 
 " Assume a fast terminal connection.
