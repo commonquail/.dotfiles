@@ -94,8 +94,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'freeo/vim-kalisi'
 Plugin 'edsono/vim-matchit'
-Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'StanAngeloff/php.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc'
 Plugin 'Valloric/YouCompleteMe'
