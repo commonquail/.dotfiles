@@ -28,7 +28,13 @@ unset files
 unset backup
 unset dotfilesdir
 
-plug_path=~/.vim/autoload/plug.vim
+[[ -L $HOME/.config/nvim ]] || ln -s "$HOME/.vim" "$HOME/.config/nvim"
+
+plug_path="$HOME/.vim/autoload/plug.vim"
+if type nvim > /dev/null 2>&1; then
+    plug_path="$HOME/.local/share/nvim/sites/autoload/plug.vim"
+fi
+
 if [[ ! -d "$plug_path" ]]; then
     echo "Preparing Vim..."
     curl --fail --location --output "$plug_path" --create-dirs \
