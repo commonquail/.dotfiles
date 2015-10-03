@@ -28,6 +28,11 @@ unset files
 unset backup
 unset dotfilesdir
 
-echo "Preparing Vim..."
-vim +BundleInstall +qall
+vundle_path=~/.vim/bundle/Vundle.vim
+if [[ ! -d "$vundle_path" ]]; then
+    echo "Preparing Vim..."
+    git clone https://github.com/VundleVim/Vundle.vim.git "$vundle_path"
+    vim +PluginInstall +qall
+fi
+
 echo "Done."
