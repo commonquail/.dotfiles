@@ -9,6 +9,13 @@ set nocompatible
 " Assume a fast terminal connection.
 set ttyfast
 
+" Ensure UTF-8 internal encoding.
+" Prefer UTF-8 file encoding but allow fall-back.
+if has('vim_starting')
+  set encoding=utf-8
+  set fileencodings=utf-8,latin1
+endif
+
 " Don't store backups; do make temps when writing to file.
 set nobackup
 set noswapfile
@@ -213,14 +220,6 @@ if has("gui_running")
   set columns=85
   set guioptions-=r	" Exclude scroll bar.
   set guioptions-=T	" Exclude toolbar.
-endif
-
-" Default encoding.
-set encoding=utf8
-
-" Prioritised list of file encodings to try.
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-  set fileencodings=utf-8,latin1
 endif
 
 " Substitute spaces for tabs.
