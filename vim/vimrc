@@ -100,7 +100,6 @@ call vundle#begin('~/.vim/bundle')
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'freeo/vim-kalisi'
-Plugin 'edsono/vim-matchit'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc'
 Plugin 'Valloric/YouCompleteMe'
