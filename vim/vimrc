@@ -79,9 +79,7 @@ if has('mouse')
   set mouse=a
 endif
 
-if $TERM =~ 'xterm'
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 if $TERM =~ '\(xterm\|screen\)'
   set t_ut=
