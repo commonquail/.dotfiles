@@ -91,11 +91,7 @@ Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
-" Enable search pattern highlighting if the terminal has colours.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
+syntax on
 
 if has("autocmd")
   " Enable file type detection.
@@ -157,6 +153,9 @@ set whichwrap+=<,>,h,l
 
 " Report all line changes from :substitute.
 set report=0
+
+" Highlight search matches.
+set hlsearch
 
 " Case insensitive searching.
 set ignorecase
