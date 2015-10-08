@@ -85,13 +85,6 @@ if $TERM =~ '\(xterm\|screen\)'
   set t_ut=
 endif
 
-" Enable search pattern highlighting if the terminal has colours.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-  nnoremap <silent> <C-N> :set invhlsearch<CR>
-endif
-
 set runtimepath+=~/.vim/bundle/Vundle.vim/
 call vundle#begin('~/.vim/bundle')
 
@@ -103,6 +96,13 @@ Plugin 'Shougo/vimproc'
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
+
+" Enable search pattern highlighting if the terminal has colours.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+  nnoremap <silent> <C-N> :set invhlsearch<CR>
+endif
 
 if has("autocmd")
   " Enable file type detection.
