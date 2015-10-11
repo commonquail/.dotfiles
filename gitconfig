@@ -4,10 +4,6 @@
 	name = Mikkel Kjeldsen
 [credential]
 	helper = cache
-[credential "https://github.com"]
-	username = commonquail
-[credential "https://bitbucket.org"]
-	username = jokum
 [push]
 	default = simple
 [color]
