@@ -1,9 +1,3 @@
-" The Windows equivalent of ~/.vim is ~/vimfiles. Force Vim to look in ~/.vim
-" for platform agnosticism, though only on Windows.
-if has('win32')
-  set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
-endif
-
 set nocompatible
 
 " Assume a fast terminal connection.
@@ -97,12 +91,7 @@ Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
-" Enable search pattern highlighting if the terminal has colours.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-  nnoremap <silent> <C-N> :set invhlsearch<CR>
-endif
+syntax on
 
 if has("autocmd")
   " Enable file type detection.
@@ -127,14 +116,6 @@ if has("autocmd")
   augroup END
 else
   set autoindent        " always set autoindenting on
-endif
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-        \ | wincmd p | diffthis
 endif
 
 " 7 line vertical scroll buffer.
@@ -164,6 +145,9 @@ set whichwrap+=<,>,h,l
 
 " Report all line changes from :substitute.
 set report=0
+
+" Highlight search matches.
+set hlsearch
 
 " Case insensitive searching.
 set ignorecase
@@ -200,24 +184,7 @@ noremap <silent> <F6> <Esc>:make<CR><CR>
 noremap <silent> <F7> <Esc>:cprevious<CR>
 noremap <silent> <F8> <Esc>:cnext<CR>
 
-if has("unix")
-  set gfn=Monospace\ 12
-  set shell=bash
-elseif has("mac")
-  set gfn=Menlo:h14
-  set shell=bash
-else
-  set gfn=DejaVu\ LGC\ Sans\ Mono:h11,Bitstream\ Vera\ Sans\ Mono:h11
-endif
-
 set colorcolumn=81
-
-" Remove GUI noise in GVim.
-if has("gui_running")
-  set columns=85
-  set guioptions-=r	" Exclude scroll bar.
-  set guioptions-=T	" Exclude toolbar.
-endif
 
 " Substitute spaces for tabs.
 set expandtab
@@ -274,12 +241,10 @@ set statusline+=%l/%L:%c\       " Current line / total lines, column.
 set statusline+=%P              " Percentage through file.
 
 " Move a line of text using Alt+[jk].
-if has("unix") || has("win32")
-  nnoremap <M-k> mz:m-2<CR>`z
-  nnoremap <M-j> mz:m+<CR>`z
-  vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
-  vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
-endif
+nnoremap <M-k> mz:m-2<CR>`z
+nnoremap <M-j> mz:m+<CR>`z
+vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
+vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
 
 " Repeat last action and return to starting position.
 nnoremap . .`[
