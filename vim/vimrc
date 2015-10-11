@@ -241,12 +241,10 @@ set statusline+=%l/%L:%c\       " Current line / total lines, column.
 set statusline+=%P              " Percentage through file.
 
 " Move a line of text using Alt+[jk].
-if has("unix") || has("win32")
-  nnoremap <M-k> mz:m-2<CR>`z
-  nnoremap <M-j> mz:m+<CR>`z
-  vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
-  vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
-endif
+nnoremap <M-k> mz:m-2<CR>`z
+nnoremap <M-j> mz:m+<CR>`z
+vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
+vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
 
 " Repeat last action and return to starting position.
 nnoremap . .`[
