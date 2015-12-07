@@ -11,7 +11,7 @@ bind main	G	none
 bind generic	G	move-last-line
 
 # Create new branch on current commit.
-bind main	B	!git branch %(prompt) %(commit)
+bind main	B	@git branch %(prompt) %(commit)
 
 # test
 
