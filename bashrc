@@ -115,7 +115,6 @@ man() {
 
 export SVN_EDITOR=vim
 export VISUAL=vim
-export TERM=xterm-256color
 
 home_bin=~/bin
 [[ -d "$home_bin" ]] && export PATH="$home_bin:$PATH"
