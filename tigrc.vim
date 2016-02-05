@@ -81,3 +81,5 @@ bind main cf !?@git commit --fixup %(commit)
 
 bind generic K view-help
 bind generic <C-w><C-w> view-next
+
+bind generic ø @sh -c "printf '%s' %(commit) | xsel -ib"
