@@ -57,6 +57,7 @@ noremap <Leader>tm :tabmove
 
 " Option manipulation.
 nnoremap <Leader>osh :set invhlsearch<CR>
+nnoremap <Leader>osp :set invpaste paste?<CR>
 
 " Yank buffer to clipboard.
 nnoremap <Leader>ya :%ya+<CR>
