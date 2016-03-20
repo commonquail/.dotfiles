@@ -34,11 +34,6 @@ shopt -s globstar
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 use_color=false
 
 # Set colorful PS1 only on colorful terminals.
@@ -66,7 +61,7 @@ if ${use_color} ; then
     fi
 
     if [[ ${EUID} == 0 ]] ; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\e[0;96m\]@\h \[\e[1;34m\]\w\n\[\e[1;32m\]\$\[\e[m\] '
+        PS1='\[\e[0;96m\]@\h \[\e[1;34m\]\w\n\[\e[1;32m\]\$\[\e[m\] '
     else
         PS1='\[\e[01;32m\]\u\[\e[01;36m\]@\h \[\e[01;34m\]\w\[\e[01;33m\]$(__git_ps1)\[\e[m\]\n\[\e[01;32m\]\$\[\e[m\] '
     fi
