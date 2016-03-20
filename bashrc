@@ -121,5 +121,4 @@ pathprepend()
     [[ -d "$1" && ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+":$PATH"}"
 }
 
-pathprepend ~/bin
 pathprepend ~/.npm/bin
