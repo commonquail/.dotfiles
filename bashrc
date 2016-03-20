@@ -113,7 +113,6 @@ man() {
         man "$@"
 }
 
-export SVN_EDITOR=vim
 export VISUAL=vim
 
 pathprepend()
