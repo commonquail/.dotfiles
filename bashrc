@@ -60,24 +60,37 @@ if ${use_color} ; then
         fi
     fi
 
+    # tput bold;
+    red=$'\e[1;31m'     # tput setaf 1
+    green=$'\e[1;32m'   # tput setaf 2
+    yellow=$'\e[1;33m'  # tput setaf 3
+    blue=$'\e[1;34m'    # tput setaf 4
+    cyan=$'\e[1;36m'    # tput setaf 6
+    reset=$'\e[0m'      # tput sgr0
+
     if [[ ${EUID} == 0 ]] ; then
-        PS1='\[\e[01;31m\]\u\[\e[01;36m\]@\h \[\e[01;34m\]\w\[\e[m\]\n\[\e[01;32m\]\$\[\e[m\] '
+        PS1='\[$red\]\u\[$cyan\]@\h \[$blue\]\w\[$reset\]\n\[$green\]\$\[$reset\] '
     else
-        PS1='\[\e[01;32m\]\u\[\e[01;36m\]@\h \[\e[01;34m\]\w\[\e[01;33m\]$(__git_ps1)\[\e[m\]\n\[\e[01;32m\]\$\[\e[m\] '
+        PS1='\[$green\]\u\[$cyan\]@\h \[$blue\]\w\[$yellow\]$(__git_ps1)\[$reset\]\n\[$green\]\$\[$reset\] '
     fi
 
-    # Blink.
-    export LESS_TERMCAP_mb=$'\e[1;32m'
-    export LESS_TERMCAP_md=$'\e[1;96m'
-    export LESS_TERMCAP_me=$'\e[0m'
-    # Search matches: bold yellow on blue.
     # tput bold; tput setaf 3; tput setab 4
-    export LESS_TERMCAP_so=$'\e[1;33;44m'
-    export LESS_TERMCAP_se=$'\e[0m'
-    # Underlined: bold, underline, green.
+    yellow_on_blue=$'\e[1;33;44m'
     # tput bold; tput rmul; tput setaf 2
-    export LESS_TERMCAP_us=$'\e[1;4;32m'
-    export LESS_TERMCAP_ue=$'\e[0m'
+    underlined_green=$'\e[1;4;32m'
+
+    # Blink.
+    export LESS_TERMCAP_mb=$green
+    export LESS_TERMCAP_md=$cyan
+    export LESS_TERMCAP_me=$reset
+    # Search matches.
+    export LESS_TERMCAP_so=$yellow_on_blue
+    export LESS_TERMCAP_se=$reset
+    # Underlined.
+    export LESS_TERMCAP_us=$underlined_green
+    export LESS_TERMCAP_ue=$reset
+
+    unset yellow_on_blue underlined_green
 
     alias ls='ls --color=auto'
     alias grep='grep --colour=auto'
