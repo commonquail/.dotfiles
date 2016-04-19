@@ -116,8 +116,10 @@ man() {
 export SVN_EDITOR=vim
 export VISUAL=vim
 
-home_bin=~/bin
-[[ -d "$home_bin" ]] && export PATH="$home_bin:$PATH"
+pathprepend()
+{
+    [[ -d "$1" && ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+":$PATH"}"
+}
 
-npm_bin=~/.npm/bin
-[[ -d "$npm_bin" ]] && export PATH="$npm_bin:$PATH"
+pathprepend ~/bin
+pathprepend ~/.npm/bin
