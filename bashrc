@@ -66,6 +66,19 @@ if ${use_color} ; then
         PS1='\[\e[01;32m\]\u\[\e[01;36m\]@\h \[\e[01;34m\]\w\[\e[01;33m\]$(__git_ps1)\[\e[m\]\n\[\e[01;32m\]\$\[\e[m\] '
     fi
 
+    # Blink.
+    export LESS_TERMCAP_mb=$'\e[1;32m'
+    export LESS_TERMCAP_md=$'\e[1;96m'
+    export LESS_TERMCAP_me=$'\e[0m'
+    # Search matches: bold yellow on blue.
+    # tput bold; tput setaf 3; tput setab 4
+    export LESS_TERMCAP_so=$'\e[1;33;44m'
+    export LESS_TERMCAP_se=$'\e[0m'
+    # Underlined: bold, underline, green.
+    # tput bold; tput rmul; tput setaf 2
+    export LESS_TERMCAP_us=$'\e[1;4;32m'
+    export LESS_TERMCAP_ue=$'\e[0m'
+
     alias ls='ls --color=auto'
     alias grep='grep --colour=auto'
     alias fgrep='fgrep --color=auto'
@@ -87,18 +100,6 @@ if ! shopt -oq posix; then
         . /etc/bash_completion
     fi
 fi
-
-man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;32m") \
-        LESS_TERMCAP_md=$(printf "\e[1;96m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;4;32m") \
-        man "$@"
-}
 
 export VISUAL=vim
 
