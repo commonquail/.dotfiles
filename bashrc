@@ -1,8 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-# If not running interactively, don't do anything
+# If not running interactively, bail.
 case $- in
     *i*)
         ;;
@@ -10,35 +6,26 @@ case $- in
         return;;
 esac
 
-# Disable flow-control (suspend terminal on C-s)
+# Disable flow-control (suspend terminal on C-s).
 stty -ixon
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
+# Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
+# Append to the history file, don't overwrite it.
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
 HISTFILESIZE=20000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Check the window size after each command.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+# Expand paths recursively.
+shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+# Make less more friendly for non-text input files.
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 use_color=false
 
@@ -66,11 +53,37 @@ if ${use_color} ; then
         fi
     fi
 
+    # tput bold;
+    red=$'\e[1;31m'     # tput setaf 1
+    green=$'\e[1;32m'   # tput setaf 2
+    yellow=$'\e[1;33m'  # tput setaf 3
+    blue=$'\e[1;34m'    # tput setaf 4
+    cyan=$'\e[1;36m'    # tput setaf 6
+    reset=$'\e[0m'      # tput sgr0
+
     if [[ ${EUID} == 0 ]] ; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\e[0;96m\]@\h \[\e[1;34m\]\w\n\[\e[1;32m\]\$\[\e[m\] '
+        PS1='\[$red\]\u\[$cyan\]@\h \[$blue\]\w\[$reset\]\n\[$green\]\$\[$reset\] '
     else
-        PS1='\[\e[01;32m\]\u\[\e[01;36m\]@\h \[\e[01;34m\]\w\[\e[01;33m\]$(__git_ps1)\[\e[m\]\n\[\e[01;32m\]\$\[\e[m\] '
+        PS1='\[$green\]\u\[$cyan\]@\h \[$blue\]\w\[$yellow\]$(__git_ps1)\[$reset\]\n\[$green\]\$\[$reset\] '
     fi
+
+    # tput bold; tput setaf 3; tput setab 4
+    yellow_on_blue=$'\e[1;33;44m'
+    # tput bold; tput rmul; tput setaf 2
+    underlined_green=$'\e[1;4;32m'
+
+    # Blink.
+    export LESS_TERMCAP_mb=$green
+    export LESS_TERMCAP_md=$cyan
+    export LESS_TERMCAP_me=$reset
+    # Search matches.
+    export LESS_TERMCAP_so=$yellow_on_blue
+    export LESS_TERMCAP_se=$reset
+    # Underlined.
+    export LESS_TERMCAP_us=$underlined_green
+    export LESS_TERMCAP_ue=$reset
+
+    unset yellow_on_blue underlined_green
 
     alias ls='ls --color=auto'
     alias grep='grep --colour=auto'
@@ -81,43 +94,24 @@ else
 fi
 unset use_color safe_term match_lhs
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+# Store aliases elsewhere.
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# Enable programmable completion.
+# Required unless enabled in /etc/bash.bashrc and /etc/profile sources it.
 if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
+    if [[ -f /usr/share/bash-completion/bash_completion ]]; then
         . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
+    elif [[ -f /etc/bash_completion ]]; then
         . /etc/bash_completion
     fi
 fi
 
-man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;32m") \
-        LESS_TERMCAP_md=$(printf "\e[1;96m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;4;32m") \
-        man "$@"
-}
-
-export SVN_EDITOR=vim
 export VISUAL=vim
 
-home_bin=~/bin
-[[ -d "$home_bin" ]] && export PATH="$home_bin:$PATH"
+pathprepend()
+{
+    [[ -d "$1" && ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+":$PATH"}"
+}
 
-npm_bin=~/.npm/bin
-[[ -d "$npm_bin" ]] && export PATH="$npm_bin:$PATH"
+pathprepend ~/.npm/bin
