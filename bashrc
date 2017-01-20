@@ -29,15 +29,6 @@ shopt -s globstar
 
 use_color=true
 if ${use_color} ; then
-    # Enable colors for ls, etc. Prefer ~/.dir_colors #64489
-    if type -P dircolors >/dev/null ; then
-        if [[ -f ~/.dir_colors ]] ; then
-            eval $(dircolors -b ~/.dir_colors)
-        elif [[ -f /etc/DIR_COLORS ]] ; then
-            eval $(dircolors -b /etc/DIR_COLORS)
-        fi
-    fi
-
     # tput bold;
     red=$'\e[1;31m'     # tput setaf 1
     green=$'\e[1;32m'   # tput setaf 2
@@ -70,8 +61,11 @@ if ${use_color} ; then
 
     unset yellow_on_blue underlined_green
 
-    alias ls='ls --color=auto'
-    alias grep='grep --colour=auto'
+    if [[ -x /usr/bin/dircolors ]]; then
+        [[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+        alias grep='grep --colour=auto'
+    fi
 else
     PS1='\u@\h \w \$ '
 fi
