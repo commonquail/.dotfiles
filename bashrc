@@ -37,7 +37,9 @@ if ${use_color} ; then
     cyan=$'\e[1;36m'    # tput setaf 6
     reset=$'\e[0m'      # tput sgr0
 
-    if [[ ${EUID} == 0 ]] ; then
+    if [[ -z $SSH_TTY ]] ; then
+        PS1='\[$blue\]\w\[$yellow\]$(__git_ps1)\[$reset\] \[$green\]\$\[$reset\] '
+    elif [[ ${EUID} == 0 ]] ; then
         PS1='\[$red\]\u\[$cyan\]@\h \[$blue\]\w\[$reset\]\n\[$green\]\$\[$reset\] '
     else
         PS1='\[$green\]\u\[$cyan\]@\h \[$blue\]\w\[$yellow\]$(__git_ps1)\[$reset\]\n\[$green\]\$\[$reset\] '
