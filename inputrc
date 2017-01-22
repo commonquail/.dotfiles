@@ -14,6 +14,9 @@ set completion-ignore-case on
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 
+# Append slash to completed directory symlinks.
+set mark-symlinked-directories on
+
 # Page Up/Down find previous history match.
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
