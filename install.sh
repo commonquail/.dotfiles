@@ -28,11 +28,12 @@ unset files
 unset backup
 unset dotfilesdir
 
-vundle_path=~/.vim/bundle/Vundle.vim
-if [[ ! -d "$vundle_path" ]]; then
+plug_path=~/.vim/autoload/plug.vim
+if [[ ! -d "$plug_path" ]]; then
     echo "Preparing Vim..."
-    git clone https://github.com/VundleVim/Vundle.vim.git "$vundle_path"
-    vim +PluginInstall +qall
+    curl --fail --location --output "$plug_path" --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    vim +PlugInstall +qall
 fi
 
 echo "Done."
