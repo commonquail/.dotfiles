@@ -80,29 +80,18 @@ if $TERM =~ '\(xterm\|screen\)'
   set t_ut=
 endif
 
-set runtimepath+=~/.vim/bundle/Vundle.vim/
-call vundle#begin('~/.vim/bundle')
+call plug#begin('~/.vim/bundle')
 
-Plugin 'VundleVim/Vundle.vim'
+Plug 'freeo/vim-kalisi'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc', { 'do': 'make' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 
-Plugin 'freeo/vim-kalisi'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimproc'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-
-call vundle#end()
-
-syntax on
+call plug#end()
 
 if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
     au!
