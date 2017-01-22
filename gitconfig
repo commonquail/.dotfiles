@@ -36,6 +36,7 @@
 	transplant = "!f() { git rebase --onto \"$1\" $(git rev-list -1 --merges HEAD); } && f"
 	b = branch --verbose
 	force-push = push --force-with-lease --repo=
+	serve = !git daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 [include]
 	path = .git_local
 [merge]
