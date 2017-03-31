@@ -45,3 +45,5 @@
 	enabled = true
 [diff]
 	indentHeuristic = true
+[core]
+	untrackedCache = true
