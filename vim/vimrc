@@ -278,3 +278,6 @@ let g:ycm_filetype_blacklist = {
 
 colorscheme kalisi
 set background=dark
+
+set secure
+set exrc
