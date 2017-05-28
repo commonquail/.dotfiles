@@ -98,10 +98,11 @@ call plug#begin('~/.vim/bundle')
 Plug 'freeo/vim-kalisi'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc', { 'do': 'make' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --rust-completer' }
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'tpope/vim-surround'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
