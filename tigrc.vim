@@ -2,14 +2,6 @@
 bind main	F	none
 bind generic	F	view-grep
 
-# Rebind g to Vim-gg.
-bind generic	g	none
-bind generic	gg	move-first-line
-
-# Rebind G to Vim-G.
-bind main	G	none
-bind generic	G	move-last-line
-
 # Create new branch on current commit.
 bind main	B	@git branch %(prompt) %(commit)
 
@@ -28,7 +20,7 @@ bind generic gp parent
 bind generic gP back
 bind generic gn view-next
 
-bind main    G  none
+bind main    G  move-last-line
 bind generic G  move-last-line
 
 bind generic v  none
