@@ -37,6 +37,7 @@
 	b = branch --verbose
 	force-push = push --force-with-lease --repo=
 	serve = !git daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
+	cp = cherry-pick
 [include]
 	path = .git_local
 [merge]
