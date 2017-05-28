@@ -88,6 +88,7 @@ Plug 'Shougo/vimproc', { 'do': 'make' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
