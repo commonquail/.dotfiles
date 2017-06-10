@@ -11,6 +11,7 @@ stty -ixon
 
 # Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
+HISTIGNORE='fg'
 
 # Append to the history file, don't overwrite it.
 shopt -s histappend
