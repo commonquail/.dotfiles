@@ -5,4 +5,6 @@ set main-view-date-format = %Y-%m-%d
 
 set mailmap = yes
 
+set ignore-case = smart-case
+
 source ~/.tigrc.vim
