@@ -1,5 +1,6 @@
 [user]
 	name = Mikkel Kjeldsen
+	useConfigOnly = true
 [credential]
 	helper = cache
 [push]
