@@ -1,7 +1,8 @@
 autocmd! vimrcEx BufReadPost *
 setlocal spell spelllang=en_gb
 setlocal formatoptions+=n
-setlocal comments=b:#,n:>,fb:-,fb:*
+" Amend default number-list formatting to include dash- and bullet lists.
+setlocal formatlistpat=^\\s*[-*0-9]\\+[\]:.)}\\t\ ]\\s*
 
 command! -buffer -nargs=1 Reference :call s:reference(<q-args>)
 
