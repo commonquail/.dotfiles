@@ -1,6 +1,7 @@
 autocmd! vimrcEx BufReadPost *
 setlocal spell spelllang=en_gb
 setlocal formatoptions+=n
+setlocal formatoptions+=q
 " Amend default number-list formatting to include dash- and bullet lists.
 setlocal formatlistpat=^\\s*[-*0-9]\\+[\]:.)}\\t\ ]\\s*
 
