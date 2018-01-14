@@ -25,9 +25,14 @@ nnoremap <Leader>osh :set invhlsearch<CR>
 " and requires pressing Tab once.
 nnoremap <Leader>al :actionlist 
 
-nnoremap <Leader>ao :action OverrideMethods<CR>
+nnoremap <Leader>afu :action FindUsages<CR>
 nnoremap <Leader>agc :action GenerateConstructor<CR>
 nnoremap <Leader>agi :action GotoImplementation<CR>
+nnoremap <Leader>ail :action IntroduceVariable<CR>
+nnoremap <Leader>aim :action ImplementMethods<CR>
+nnoremap <Leader>am :action Move<CR>
+nnoremap <Leader>aom :action OverrideMethods<CR>
+nnoremap <Leader>ar :action RenameElement<CR>
 
 inoremap jf <Esc>
 
