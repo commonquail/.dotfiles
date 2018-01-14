@@ -14,7 +14,7 @@ function! s:reference(rev)
     let query = a:rev
   endif
   let query = shellescape(query, 1)
-  let pretty = shellescape('%h ("%s")', 1)
-  let git_log = "git log -1 --format=" . pretty . " " . query . " --"
+  let pretty = shellescape('%h ("%s", %ad)', 1)
+  let git_log = "git log -1 --date=short --format=" . pretty . " " . query . " --"
   silent exe "read !" . git_log
 endfunction
