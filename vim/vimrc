@@ -74,7 +74,7 @@ if has('mouse')
   set mouse=a
 endif
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 
 if $TERM =~ '\(xterm\|screen\)'
   set t_ut=
