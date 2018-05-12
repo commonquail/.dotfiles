@@ -37,6 +37,7 @@
 	transplant = "!f() { git rebase --onto \"$1\" $(git rev-list -1 --merges HEAD); } && f"
 	b = branch --verbose
 	force-push = push --force-with-lease --repo=
+	quote = show -s --date=short --pretty='format:%h (\"%s\", %ad)'
 	serve = !git daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 	cp = cherry-pick
 [include]
