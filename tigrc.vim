@@ -52,7 +52,8 @@ bind generic ot :toggle commit-title-overflow
 bind generic oF :toggle file-filter
 bind generic or :toggle commit-title-refs
 
-bind generic @  none
+bind diff  @ none
+bind stage @ none
 bind generic @j :/^@@
 bind generic @k :?^@@
 bind generic @- :toggle diff-context -1
