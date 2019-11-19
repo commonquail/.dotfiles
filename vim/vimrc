@@ -1,12 +1,16 @@
-set nocompatible
+if ! has('nvim')
+  set nocompatible
 
-" Assume a fast terminal connection.
-set ttyfast
+  " Assume a fast terminal
+  set ttyfast
+endif
 
 " Ensure UTF-8 internal encoding.
 " Prefer UTF-8 file encoding but allow fall-back.
 if has('vim_starting')
-  set encoding=utf-8
+  if ! has('nvim')
+    set encoding=utf-8
+  endif
   set fileencodings=utf-8,latin1
 endif
 
@@ -76,7 +80,7 @@ endif
 
 set termguicolors
 
-if $TERM =~ '\(xterm\|screen\)'
+if ! has('nvim') && $TERM =~ '\(xterm\|screen\)'
   set t_ut=
 endif
 
@@ -169,7 +173,9 @@ set matchpairs+=<:>
 " Disable bells and whistles.
 set noerrorbells
 set novisualbell
-set t_vb=
+if ! has('nvim')
+  set t_vb=
+endif
 set tm=500
 
 " Navigate to last and next compiler error.
