@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Tmux assigns special meaning to certain characters, such as the period,
 # so it is necessary to clean up input session names.
@@ -7,61 +7,19 @@
 # cleaned up before tmux receives it.
 #
 # Arguments:
-# - outvar: the name of an out-variable to store the result in
-# - string: the session name to normalise
+# - 1: the session name to normalise
 normalise_session_name()
 {
-    local _outvar=$1
-    local _in=$2
-    eval $_outvar="${_in//[.:]/-}"
+    printf '%s' "$1" | tr -c '[:alnum:]' - | tr '[:upper:]' '[:lower:]'
 }
 
-list_sessions()
-{
-    if ps -e | grep -q tmux
-    then
-        tmux list-sessions
-    else
-        echo "tmux server not running."
-    fi
-}
+session="${1:-${PWD##*/}}"
+session="$(normalise_session_name "${session}")"
 
-has_session()
-{
-    tmux has-session -t "$1" 1>/dev/null 2>&1
-}
-
-attach_to_session()
-{
-    tmux attach -t "$1"
-}
-
-attach_if_session_exists()
-{
-    if has_session "$1"
-    then
-        attach_to_session "$1"
-        return $?
-    fi
-
-    return 1
-}
-
-if [[ $# != 0 ]]
+# "new-s -A" doesn't support session name prefix like "attach-s -t".
+if ! tmux attach -t "$session" 2>/dev/null
 then
-    normalise_session_name session "$1"
-    attach_if_session_exists "${session}" || list_sessions
-    exit $?
+    test $# -gt 0 || exec tmux new-session -s "$session"
+    tmux list-sessions 2>/dev/null || printf 1>&2 'tmux server not running.\n'
+    exit 1
 fi
-
-session="${PWD##*/}"
-normalise_session_name session "${session}"
-
-attach_if_session_exists "${session}" && exit $?
-
-tmux new-session -d -s "$session"
-tmux send-keys -t "$session":1 tig C-m
-
-tmux new-window -t "$session"
-
-attach_to_session "$session"
