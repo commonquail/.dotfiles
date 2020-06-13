@@ -10,7 +10,7 @@
 # - 1: the session name to normalise
 normalise_session_name()
 {
-    printf '%s' "$1" | tr -c '[:alnum:]' -
+    printf '%s' "$1" | tr -c '[:alnum:]' - | tr '[:upper:]' '[:lower:]'
 }
 
 session="${1:-${PWD##*/}}"
