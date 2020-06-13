@@ -30,7 +30,7 @@
 	searchchange = log --pickaxe-regex -S
 	searchdiff = log -G
 	searchlog = log --grep
-	pr = pull --rebase
+	pr = pull --rebase --prune
 	ls-files-changed = diff --name-status
 	mt = mergetool
 	up = pull --ff --ff-only
