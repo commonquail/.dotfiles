@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Tmux assigns special meaning to certain characters, such as the period,
 # so it is necessary to clean up input session names.
@@ -7,17 +7,14 @@
 # cleaned up before tmux receives it.
 #
 # Arguments:
-# - outvar: the name of an out-variable to store the result in
-# - string: the session name to normalise
+# - 1: the session name to normalise
 normalise_session_name()
 {
-    local _outvar=$1
-    local _in=$2
-    eval $_outvar="${_in//[.:]/-}"
+    printf '%s' "$1" | tr -c '[:alnum:]' -
 }
 
 session="${1:-${PWD##*/}}"
-normalise_session_name session "${session}"
+session="$(normalise_session_name "${session}")"
 
 # "new-s -A" doesn't support session name prefix like "attach-s -t".
 if ! tmux attach -t "$session" 2>/dev/null
