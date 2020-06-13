@@ -60,8 +60,5 @@ normalise_session_name session "${session}"
 attach_if_session_exists "${session}" && exit $?
 
 tmux new-session -d -s "$session"
-tmux send-keys -t "$session":1 tig C-m
-
-tmux new-window -t "$session"
 
 attach_to_session "$session"
