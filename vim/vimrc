@@ -215,7 +215,7 @@ nnoremap <Leader><Space> /
 nnoremap <Leader><S-Space> ?
 
 " Search for the word under the cursor but don't jump to next occurrence.
-nnoremap * *<C-O>
+nnoremap * *``
 
 " Specify the behaviour when switching between buffers.
 try
