@@ -87,8 +87,6 @@ if ! shopt -oq posix; then
     fi
 fi
 
-export VISUAL=vim
-
 pathprepend()
 {
     [[ -d "$1" && ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+":$PATH"}"
