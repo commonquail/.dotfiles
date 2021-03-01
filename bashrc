@@ -17,6 +17,7 @@ HISTIGNORE='fg'
 shopt -s histappend
 
 HISTSIZE=100000
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Check the window size after each command.
 shopt -s checkwinsize
