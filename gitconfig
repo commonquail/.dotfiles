@@ -32,6 +32,10 @@
 	quote = show -s --pretty=reference
 	serve = !git daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 	cp = cherry-pick
+	trailer-add = "!f() { GIT_EDITOR=\"git interpret-trailers --trailer='$1: $2' --in-place\" git commit --amend; } && f"
+	trailer-fixes-commit = "!f() { git trailer-add Fixes \"$(git quote \"$1\")\"; } && f"
+	trailer-references-url = "!f() { git trailer-add References \"$1\"; } && f"
+	trailer-resolves-url = "!f() { git trailer-add Resolves \"$1\"; } && f"
 [include]
 	path = .git_local
 [merge]
