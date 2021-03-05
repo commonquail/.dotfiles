@@ -16,8 +16,8 @@ HISTIGNORE='fg'
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=100000
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Check the window size after each command.
 shopt -s checkwinsize
