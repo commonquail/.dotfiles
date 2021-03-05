@@ -51,6 +51,13 @@ if ${use_color} ; then
     # tput bold; tput rmul; tput setaf 2
     underlined_green=$'\e[1;4;32m'
 
+    # Leap 15.2 needs this variable declared for LESS_TERMCAP_* variables to
+    # take effect. grotty(1)'s manual suggests that the variable has the
+    # opposite effect, or that "PAGER='less -R'" should work equivalently, but
+    # this is the only thing that seems to work in practice.
+    # https://forums.opensuse.org/showthread.php/414983-Color-Man-Pages/page2
+    export GROFF_NO_SGR=1
+
     # Blink.
     export LESS_TERMCAP_mb=$green
     export LESS_TERMCAP_md=$cyan
