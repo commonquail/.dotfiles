@@ -13,28 +13,20 @@
 	unstage = reset HEAD --
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	unpushed = log --branches --not --remotes --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-	undo = reset --hard HEAD~1
 	st = status
 	ci = commit
 	mb = checkout -b
 	co = checkout
 	dc = diff --cached
 	mf = merge --no-ff
-	ss = stash save
 	sl = stash list
 	rc = rebase --continue
 	ri = rebase --interactive
 	ca = commit --amend
 	can = commit --amend --no-edit
 	cleanorig = clean -f *.orig
-	searchchange = log --pickaxe-regex -S
-	searchdiff = log -G
-	searchlog = log --grep
 	pr = pull --rebase --prune
-	ls-files-changed = diff --name-status
 	mt = mergetool
-	up = pull --ff --ff-only
-	transplant = "!f() { git rebase --onto \"$1\" $(git rev-list -1 --merges HEAD); } && f"
 	b = branch --verbose
 	force-push = push --force-with-lease --repo=
 	quote = show -s --date=short --pretty='format:%h (\"%s\", %ad)'
