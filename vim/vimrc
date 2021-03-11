@@ -66,8 +66,8 @@ nnoremap <Leader>osp :set invpaste paste?<CR>
 " Yank buffer to clipboard.
 nnoremap <Leader>ya :%ya+<CR>
 
-" Ctrl-U in insert mode deletes a lot. Use Ctrl-G u to first break undo,
-" so that you can undo Ctrl-U after inserting a line break.
+" Ctrl-U in insert mode deletes a lot. Use Ctrl-G,u to first break the
+" undo-block so a subseqent normal-mode undo can recover what was lost.
 inoremap <C-U> <C-G>u<C-U>
 
 " Map jf to to leave insert mode.
