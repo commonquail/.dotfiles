@@ -24,7 +24,6 @@ function! s:reference(rev)
     let query = a:rev
   endif
   let query = shellescape(query, 1)
-  let pretty = shellescape('%h ("%s", %ad)', 1)
-  let cmd = "git show -s --date=short --format=" . pretty . " " . query . " --"
+  let cmd = "git show -s --pretty=reference " . query . " --"
   silent exe "read !" . cmd
 endfunction

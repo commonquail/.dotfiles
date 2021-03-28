@@ -29,7 +29,7 @@
 	mt = mergetool
 	b = branch --verbose
 	force-push = push --force-with-lease --repo=
-	quote = show -s --date=short --pretty='format:%h (\"%s\", %ad)'
+	quote = show -s --pretty=reference
 	serve = !git daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 	cp = cherry-pick
 [include]
